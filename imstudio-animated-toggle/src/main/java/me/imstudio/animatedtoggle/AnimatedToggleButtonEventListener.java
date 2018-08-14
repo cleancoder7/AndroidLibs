@@ -1,4 +1,4 @@
-package animatedtoggle.imstudio.me;
+package me.imstudio.animatedtoggle;
 
 import android.widget.ImageView;
 

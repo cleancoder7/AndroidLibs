@@ -1,4 +1,4 @@
-package animatedtoggle.imstudio.me;
+package me.imstudio.animatedtoggle;
 
 import android.animation.ArgbEvaluator;
 import android.annotation.TargetApi;
@@ -13,7 +13,7 @@ import android.util.AttributeSet;
 import android.util.Property;
 import android.view.View;
 
-import core.imstudio.me.utils.Utils;
+import me.imstudio.core.Utils;
 
 public class CircleView extends View {
 

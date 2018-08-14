@@ -11,6 +11,7 @@
             <option value="$PROJECT_DIR$/imstudio" />
             <option value="$PROJECT_DIR$/imstudio-animated-toggle" />
             <option value="$PROJECT_DIR$/imstudio-core" />
+            <option value="$PROJECT_DIR$/imstudio-indicator" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

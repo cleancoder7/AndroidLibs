@@ -3,13 +3,13 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
-    <animatedtoggle.imstudio.me.DotsView
+    <me.imstudio.animatedtoggle.DotsView
         android:id="@id/dot_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center" />
 
-    <animatedtoggle.imstudio.me.CircleView
+    <me.imstudio.animatedtoggle.CircleView
         android:id="@id/circle_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

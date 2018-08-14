@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="IndicatorLayout">
+        <attr name="ims_number" format="integer" />
+        <attr name="ims_iconSize" format="dimension|reference" />
+        <attr name="ims_margin" format="dimension|reference" />
+        <attr name="ims_selectedBackground" format="reference" />
+        <attr name="ims_unSelectedBackground" format="reference" />
+    </declare-styleable>
+</resources>

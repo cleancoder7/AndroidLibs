@@ -1,8 +1,8 @@
-package animatedtoggle.imstudio.me;
+package me.imstudio.animatedtoggle;
 
 import android.content.Context;
 
-import core.imstudio.me.utils.Utils;
+import me.imstudio.core.Utils;
 
 public class AnimatedToggleButtonBuilder {
 

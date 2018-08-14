@@ -1,4 +1,4 @@
-package core.imstudio.me.utils;
+package me.imstudio.core;
 
 import android.content.Context;
 import android.graphics.Color;

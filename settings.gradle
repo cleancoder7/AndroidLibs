@@ -1,1 +1,1 @@
-include ':imstudio', ':imstudio-animated-toggle', ':imstudio-core'
+include ':imstudio', ':imstudio-animated-toggle', ':imstudio-core', ':imstudio-indicator'

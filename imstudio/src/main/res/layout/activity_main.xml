@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <animatedtoggle.imstudio.me.AnimatedToggleButton
+    <me.imstudio.animatedtoggle.AnimatedToggleButton
         android:id="@id/button"
         android:layout_width="@dimen/icon_size_x5"
         android:layout_height="@dimen/icon_size_x5"
