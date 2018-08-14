@@ -29,27 +29,19 @@ public class AnimatedToggleButton extends FrameLayout implements View.OnClickLis
     private static final OvershootInterpolator OVERSHOOT_INTERPOLATOR = new OvershootInterpolator(4);
 
     private static final int INVALID_RESOURCE_ID = -1;
-    private static final float DOTVIEW_SIZE_FACTOR = 3;
+    private static final float DOT_VIEW_SIZE_FACTOR = 3;
     private static final float DOTS_SIZE_FACTOR = .08f;
-    private static final float CIRCLEVIEW_SIZE_FACTOR = 1.4f;
+    private float CIRCLE_VIEW_SIZE_FACTOR = 1.4f;
 
-    int imageResourceIdActive = INVALID_RESOURCE_ID;
-    int imageResourceIdInactive = INVALID_RESOURCE_ID;
+    int imageResourceIdActive = INVALID_RESOURCE_ID, imageResourceIdInactive = INVALID_RESOURCE_ID;
+    int imageSize, dotsSize, circleSize, primaryColor, secondaryColor, activeImageTint, inActiveImageTint;
 
-    int imageSize;
-    int dotsSize;
-    int circleSize;
-    int secondaryColor;
-    int primaryColor;
-    int activeImageTint;
-    int inActiveImageTint;
     DotsView dotsView;
     CircleView circleView;
     ImageView imageView;
 
-    boolean pressOnTouch = true;
+    boolean pressOnTouch = true, isChecked = false;
     float animationSpeed = 1;
-    boolean isChecked = false;
 
     private AnimatorSet animatorSet;
     private AnimatedToggleButtonEventListener listener;
@@ -87,8 +79,8 @@ public class AnimatedToggleButton extends FrameLayout implements View.OnClickLis
     }
 
     void init() {
-        circleSize = (int) (imageSize * CIRCLEVIEW_SIZE_FACTOR);
-        dotsSize = (int) (imageSize * DOTVIEW_SIZE_FACTOR);
+        circleSize = (int) (imageSize * CIRCLE_VIEW_SIZE_FACTOR);
+        dotsSize = (int) (imageSize * DOT_VIEW_SIZE_FACTOR);
 
         LayoutInflater.from(getContext()).inflate(R.layout.animated_toggle_button, this, true);
         circleView = findViewById(R.id.circle_view);
@@ -199,20 +191,10 @@ public class AnimatedToggleButton extends FrameLayout implements View.OnClickLis
         animatorSet.start();
     }
 
-    /**
-     * Returns whether the button is checked (Active) or not.
-     *
-     * @return
-     */
     public boolean isChecked() {
         return isChecked;
     }
 
-    /**
-     * Change Button State (Works only if both active and disabled image resource is defined)
-     *
-     * @param flag desired checked state of the button
-     */
     public void setChecked(boolean flag) {
         isChecked = flag;
         imageView.setImageResource(isChecked ? imageResourceIdActive : imageResourceIdInactive);
@@ -222,13 +204,11 @@ public class AnimatedToggleButton extends FrameLayout implements View.OnClickLis
     public void setInactiveImage(int inactiveResource) {
         this.imageResourceIdInactive = inactiveResource;
         imageView.setImageResource(isChecked ? imageResourceIdActive : imageResourceIdInactive);
-        ;
     }
 
     public void setActiveImage(int activeResource) {
         this.imageResourceIdActive = activeResource;
         imageView.setImageResource(isChecked ? imageResourceIdActive : imageResourceIdInactive);
-        ;
     }
 
     public void setEventListener(AnimatedToggleButtonEventListener listener) {
@@ -302,16 +282,17 @@ public class AnimatedToggleButton extends FrameLayout implements View.OnClickLis
     }
 
     private void getStuffFromXML(AttributeSet attr) {
-        TypedArray a = getContext().obtainStyledAttributes(attr, R.styleable.sparkbutton);
-        imageSize = a.getDimensionPixelOffset(R.styleable.sparkbutton_sparkbutton_iconSize, Utils.dpToPx(getContext(), 50));
-        imageResourceIdActive = a.getResourceId(R.styleable.sparkbutton_sparkbutton_activeImage, INVALID_RESOURCE_ID);
-        imageResourceIdInactive = a.getResourceId(R.styleable.sparkbutton_sparkbutton_inActiveImage, INVALID_RESOURCE_ID);
-        primaryColor = ContextCompat.getColor(getContext(), a.getResourceId(R.styleable.sparkbutton_sparkbutton_primaryColor, R.color.spark_primary_color));
-        secondaryColor = ContextCompat.getColor(getContext(), a.getResourceId(R.styleable.sparkbutton_sparkbutton_secondaryColor, R.color.spark_secondary_color));
-        activeImageTint = ContextCompat.getColor(getContext(), a.getResourceId(R.styleable.sparkbutton_sparkbutton_activeImageTint, R.color.spark_image_tint));
-        inActiveImageTint = ContextCompat.getColor(getContext(), a.getResourceId(R.styleable.sparkbutton_sparkbutton_inActiveImageTint, R.color.spark_image_tint));
-        pressOnTouch = a.getBoolean(R.styleable.sparkbutton_sparkbutton_pressOnTouch, true);
-        animationSpeed = a.getFloat(R.styleable.sparkbutton_sparkbutton_animationSpeed, 1);
+        TypedArray a = getContext().obtainStyledAttributes(attr, R.styleable.AnimatedToggleButton);
+        imageSize = a.getDimensionPixelOffset(R.styleable.AnimatedToggleButton_ims_iconSize, Utils.dpToPx(getContext(), 50));
+        imageResourceIdActive = a.getResourceId(R.styleable.AnimatedToggleButton_ims_imageOn, INVALID_RESOURCE_ID);
+        imageResourceIdInactive = a.getResourceId(R.styleable.AnimatedToggleButton_ims_imageOff, INVALID_RESOURCE_ID);
+        primaryColor = ContextCompat.getColor(getContext(), a.getResourceId(R.styleable.AnimatedToggleButton_ims_primaryColor, R.color.ims_primary_color));
+        secondaryColor = ContextCompat.getColor(getContext(), a.getResourceId(R.styleable.AnimatedToggleButton_ims_secondaryColor, R.color.ims_secondary_color));
+        activeImageTint = ContextCompat.getColor(getContext(), a.getResourceId(R.styleable.AnimatedToggleButton_ims_imageTintOn, R.color.ims_image_tint));
+        inActiveImageTint = ContextCompat.getColor(getContext(), a.getResourceId(R.styleable.AnimatedToggleButton_ims_imageTintOff, R.color.ims_image_tint));
+        pressOnTouch = a.getBoolean(R.styleable.AnimatedToggleButton_ims_pressOnTouch, true);
+        animationSpeed = a.getFloat(R.styleable.AnimatedToggleButton_ims_animationSpeed, 1);
+        CIRCLE_VIEW_SIZE_FACTOR = a.getFloat(R.styleable.AnimatedToggleButton_ims_circleSizeFactor, 1.4f);
         a.recycle();
     }
 }
