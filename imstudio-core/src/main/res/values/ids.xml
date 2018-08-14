@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="button" type="id" />
+    <item name="button_ok" type="id" />
+    <item name="button_left" type="id" />
+    <item name="button_right" type="id" />
+    <item name="button_cancel" type="id" />
+    <item name="text_view" type="id" />
+    <item name="edit_text" type="id" />
+    <item name="text_title" type="id" />
+    <item name="text_sub_title" type="id" />
+    <item name="rtc_toolbar" type="id" />
+    <item name="image_view" type="id" />
+    <item name="view_pager" type="id" />
+    <item name="web_view" type="id" />
+    <item name="dot_view" type="id" />
+    <item name="circle_view" type="id" />
+    <item name="progress_bar" type="id" />
+    <item name="layout" type="id" />
+    <item name="layout_empty" type="id" />
+    <item name="check_box" type="id" />
+    <item name="swipe_layout" type="id" />
+    <item name="layout_progress" type="id" />
+    <item name="status_bar" type="id" />
+    <item name="frame_layout" type="id" />
+    <item name="own_toolbar" type="id" />
+    <item name="recycler_view" type="id" />
+    <item name="tabs" type="id" />
+    <item name="view_stub" type="id" />
+</resources>

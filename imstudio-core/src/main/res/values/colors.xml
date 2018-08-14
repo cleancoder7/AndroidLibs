@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="transparent_80_white">#CCFFFFFF</color>
+    <color name="transparent_40_black">#66000000</color>
+    <color name="colorTextColorPrimary">#212121</color>
+    <color name="colorTextColorSecondary">#9b9b9b</color>
+    <color name="colorWindowBackground">#f2f2f2</color>
+    <color name="colorWindowBackgroundLight">#f7f7f7</color>
+</resources>
