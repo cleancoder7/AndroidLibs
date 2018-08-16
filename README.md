@@ -1,3 +1,0 @@
-# IMS-AndroidLIbs
-
-IMS-AndroidLIbs
