@@ -78,6 +78,18 @@ public abstract class XRecyclerAdapter<T extends XSelectable>
         notifyDataSetChanged();
     }
 
+    public void addAll(List<T> data) {
+        if (data != null && !data.isEmpty()) {
+            mData.addAll(data);
+            notifyDataSetChanged();
+        }
+    }
+
+    public void clearAll() {
+        mData.clear();
+        notifyDataSetChanged();
+    }
+
     protected void applyForSingleChoice(int position) {
         for (int i = 0; i < mData.size(); i++)
             mData.get(i).setSelected(i == position);
