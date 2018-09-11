@@ -13,6 +13,7 @@
     <dimen name="text_size_v3">18sp</dimen>
     <dimen name="text_size_v4">24sp</dimen>
 
+    <dimen name="cardCornerRadiusSmall">2dp</dimen>
     <dimen name="cardCornerRadius">5dp</dimen>
     <dimen name="cardElevation">2dp</dimen>
 

@@ -3,21 +3,25 @@ package me.imstudio.app;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.bangdev.wifichua.util.AESCryptor;
+import java.util.Arrays;
 
-import me.imstudio.core.util.LogUtil;
+import me.imstudio.core.ui.Spinner;
 
 public class MainActivity extends AppCompatActivity {
 
     private static String TAG = MainActivity.class.getSimpleName();
 
+    Spinner spinner;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        LogUtil.log(TAG, "secretKey: " + AESCryptor.getSecretKey());
-        LogUtil.log(TAG, "QRKey: " + AESCryptor.getQRKey());
-        LogUtil.log(TAG, "JWTKey: " + AESCryptor.getJWTKey());
-        LogUtil.log(TAG, "hotspotKey: " + AESCryptor.getHotspotKey());
+        spinnerExample();
+    }
+
+    private void spinnerExample() {
+        spinner = findViewById(R.id.layout);
+        spinner.setItems(Arrays.asList("1", "2", "3"));
     }
 }

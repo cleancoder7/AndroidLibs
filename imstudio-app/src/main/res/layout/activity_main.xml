@@ -19,4 +19,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
+    <me.imstudio.core.ui.ProgressBar
+        android:layout_width="@dimen/icon_size_x4"
+        android:layout_height="@dimen/icon_size_x4"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/margin_x2"
+        android:indeterminate="true"
+        app:ims_progressTint="@android:color/holo_red_dark" />
+
+    <me.imstudio.core.ui.Spinner
+        android:id="@id/layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
 </LinearLayout>

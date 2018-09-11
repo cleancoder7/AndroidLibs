@@ -6,7 +6,7 @@ public class AESCryptor  {
 
     static {
         try {
-            System.loadLibrary("aes_ndk");
+           // System.loadLibrary("aes_ndk");
         } catch (Exception e) {
             e.printStackTrace();
         }

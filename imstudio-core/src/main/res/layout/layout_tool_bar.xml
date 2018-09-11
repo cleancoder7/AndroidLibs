@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="?actionBarSize">
+
+    <android.support.v7.widget.AppCompatImageView
+        android:id="@id/button_left"
+        style="@style/CoreAppTheme.IconClick"
+        android:layout_width="?actionBarSize"
+        android:layout_height="?actionBarSize"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_centerInParent="true"
+        android:padding="@dimen/margin_x2" />
+
+    <android.support.v7.widget.AppCompatImageView
+        android:id="@id/button_right"
+        style="@style/CoreAppTheme.IconClick"
+        android:layout_width="?actionBarSize"
+        android:layout_height="?actionBarSize"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerInParent="true"
+        android:padding="@dimen/margin_x2" />
+
+    <me.imstudio.core.ui.TextView
+        android:id="@id/text_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:maxLines="1"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/text_size_v1"
+        android:textStyle="bold" />
+
+</RelativeLayout>

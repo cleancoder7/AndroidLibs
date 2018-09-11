@@ -1,5 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <declare-styleable name="ToolBar">
+        <attr name="ims_layoutType" format="enum">
+            <enum name="center" value="0" />
+            <enum name="left" value="1" />
+        </attr>
+        <attr name="ims_background" format="color" />
+        <attr name="ims_backgroundType" format="enum">
+            <enum name="color" value="0" />
+            <enum name="drawable" value="1" />
+        </attr>
+        <attr name="ims_title" format="string" />
+        <attr name="ims_titleColor" format="color" />
+        <attr name="ims_drawableLeft" format="reference" />
+        <attr name="ims_drawableRight" format="reference" />
+    </declare-styleable>
     <declare-styleable name="IndicatorLayout">
         <attr name="ims_number" format="integer" />
         <attr name="ims_indicatorSize" format="dimension|reference" />
@@ -18,5 +33,17 @@
         <attr name="ims_circleSizeFactor" format="float" />
         <attr name="ims_imageTintOn" format="reference" />
         <attr name="ims_imageTintOff" format="reference" />
+    </declare-styleable>
+    <declare-styleable name="TextView">
+        <attr name="ims_isStroke" format="boolean" />
+    </declare-styleable>
+    <declare-styleable name="ProgressBar">
+        <attr name="ims_progressTint" format="color" />
+    </declare-styleable>
+    <declare-styleable name="Spinner">
+        <attr name="ims_textColor" format="color" />
+        <attr name="ims_arrowTint" format="color" />
+        <attr name="ims_hdeArrow" format="boolean" />
+        <attr name="ims_backgroundColor" format="color" />
     </declare-styleable>
 </resources>
