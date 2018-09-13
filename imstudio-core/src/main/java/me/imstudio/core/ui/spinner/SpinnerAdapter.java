@@ -4,11 +4,11 @@ import android.content.Context;
 
 import java.util.List;
 
-public class MaterialSpinnerAdapter<T> extends MaterialSpinnerBaseAdapter {
+public class SpinnerAdapter<T> extends SpinnerBaseAdapter {
 
     private final List<T> items;
 
-    public MaterialSpinnerAdapter(Context context, List<T> items) {
+    public SpinnerAdapter(Context context, List<T> items) {
         super(context);
         this.items = items;
     }

@@ -41,9 +41,12 @@
         <attr name="ims_progressTint" format="color" />
     </declare-styleable>
     <declare-styleable name="Spinner">
+        <attr name="ims_fontSrc" format="string" />
         <attr name="ims_textColor" format="color" />
         <attr name="ims_arrowTint" format="color" />
-        <attr name="ims_hdeArrow" format="boolean" />
+        <attr name="ims_arrowHidden" format="boolean" />
         <attr name="ims_backgroundColor" format="color" />
+        <attr name="ims_arrowDrawable" format="reference" />
+        <attr name="ims_backgroundDrawable" format="reference" />
     </declare-styleable>
 </resources>

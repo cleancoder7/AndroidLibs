@@ -7,17 +7,15 @@ import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
-import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
-import android.graphics.drawable.StateListDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.ColorInt;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
@@ -27,32 +25,25 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 
-import java.lang.reflect.Method;
-import java.util.Arrays;
 import java.util.List;
 
 import me.imstudio.core.R;
-import me.imstudio.core.ui.spinner.MaterialSpinnerAdapter;
-import me.imstudio.core.ui.spinner.MaterialSpinnerAdapterWrapper;
-import me.imstudio.core.ui.spinner.MaterialSpinnerBaseAdapter;
+import me.imstudio.core.ui.spinner.SpinnerAdapter;
+import me.imstudio.core.ui.spinner.SpinnerAdapterWrapper;
+import me.imstudio.core.ui.spinner.SpinnerBaseAdapter;
 import me.imstudio.core.util.CompressUtil;
 import me.imstudio.core.util.Utils;
 
 public class Spinner extends android.support.v7.widget.AppCompatTextView {
-
     private OnNothingSelectedListener onNothingSelectedListener;
     private OnItemSelectedListener onItemSelectedListener;
-    private MaterialSpinnerBaseAdapter adapter;
+    private SpinnerBaseAdapter adapter;
     private PopupWindow popupWindow;
     private ListView listView;
-    private Drawable arrowDrawable;
-    private boolean hideArrow;
-    private boolean nothingSelected;
+    private boolean hideArrow, nothingSelected;
     private int selectedIndex;
-    private int backgroundColor;
-    private int arrowColor;
-    private int textColor;
-    private int numberOfItems;
+    private Drawable arrowDrawable;
+    private int arrowColor, numberOfItems;
 
     public Spinner(Context context) {
         super(context);
@@ -69,21 +60,37 @@ public class Spinner extends android.support.v7.widget.AppCompatTextView {
         init(context, attrs);
     }
 
-    private void init(Context context, AttributeSet attrs) {
-        TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.Spinner);
-        int defaultColor = getTextColors().getDefaultColor();
-        boolean rtl = Utils.isRtl(context);
-        setTypeFont(context);
-        try {
+    private void installFonts(Context context, AttributeSet attrs) {
+        int style = attrs.getAttributeIntValue("http://schemas.android.com/apk/res/android", "textStyle", Typeface.NORMAL);
+        if (style == Typeface.BOLD)
+            super.setTypeface(Typeface.createFromFile(
+                    CompressUtil.getDefaultFolderPath(context) +
+                            getResources().getString(R.string.str_font_bold)));
+        else
+            super.setTypeface(Typeface.createFromFile(
+                    CompressUtil.getDefaultFolderPath(context) +
+                            getResources().getString(R.string.str_font_regular)));
+    }
 
-            backgroundColor = ta.getColor(R.styleable.Spinner_ims_backgroundColor, Color.WHITE);
-            textColor = ta.getColor(R.styleable.Spinner_ims_textColor, defaultColor);
-            arrowColor = ta.getColor(R.styleable.Spinner_ims_arrowTint, textColor);
-            hideArrow = ta.getBoolean(R.styleable.Spinner_ims_hdeArrow, false);
+    private void init(Context context, AttributeSet attrs) {
+        if (attrs == null)
+            return;
+        TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.Spinner);
+        boolean rtl = Utils.isRtl(context);
+        try {
+            installFonts(context, attrs);
+            arrowColor = ta.getColor(R.styleable.Spinner_ims_arrowTint, Color.WHITE);
+            // Background
+            setBackgroundResource(ta.getResourceId(R.styleable.Spinner_ims_backgroundDrawable, R.drawable.ms_background_default));
+            hideArrow = ta.getBoolean(R.styleable.Spinner_ims_arrowHidden, false);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+                arrowDrawable = ta.getDrawable(R.styleable.Spinner_ims_arrowDrawable);
+            else
+                arrowDrawable = Utils.getDrawable(context,
+                        ta.getResourceId(R.styleable.Spinner_ims_arrowDrawable, R.drawable.ms_arrow_default));
         } finally {
             ta.recycle();
         }
-
         Resources resources = getResources();
         int left, right, bottom, top;
         left = right = bottom = top = resources.getDimensionPixelSize(R.dimen.margin_half);
@@ -91,31 +98,25 @@ public class Spinner extends android.support.v7.widget.AppCompatTextView {
             right = resources.getDimensionPixelSize(R.dimen.margin);
         else
             left = resources.getDimensionPixelSize(R.dimen.margin);
-
-        setGravity(Gravity.CENTER_VERTICAL | Gravity.START);
         setClickable(true);
         setPadding(left, top, right, bottom);
-        setBackgroundResource(R.drawable.ms_background);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1 && rtl) {
             setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
             setTextDirection(View.TEXT_DIRECTION_RTL);
         }
-
         if (!hideArrow) {
-            arrowDrawable = Utils.getDrawable(context, R.drawable.ms_arrow).mutate();
+            arrowDrawable = Utils.getDrawable(context, R.drawable.ms_arrow_default).mutate();
             arrowDrawable.setColorFilter(arrowColor, PorterDuff.Mode.SRC_IN);
             if (rtl)
                 setCompoundDrawablesWithIntrinsicBounds(arrowDrawable, null, null, null);
             else
                 setCompoundDrawablesWithIntrinsicBounds(null, null, arrowDrawable, null);
         }
-
         listView = new ListView(context);
         listView.setId(getId());
         listView.setDivider(null);
         listView.setItemsCanFocus(true);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (position >= selectedIndex && position < adapter.getCount())
@@ -130,23 +131,16 @@ public class Spinner extends android.support.v7.widget.AppCompatTextView {
                     onItemSelectedListener.onItemSelected(Spinner.this, position, id, item);
             }
         });
-
         popupWindow = new PopupWindow(context);
         popupWindow.setContentView(listView);
         popupWindow.setOutsideTouchable(true);
         popupWindow.setFocusable(true);
-
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             popupWindow.setElevation(16);
-            popupWindow.setBackgroundDrawable(Utils.getDrawable(context, R.drawable.ms_drawable));
+            popupWindow.setBackgroundDrawable(Utils.getDrawable(context, R.drawable.ms_drawable_default));
         } else
-            popupWindow.setBackgroundDrawable(Utils.getDrawable(context, R.drawable.ms_drop_down_shadow));
-        if (backgroundColor != Color.WHITE)  // default color is white
-            setBackgroundColor(backgroundColor);
-        if (textColor != defaultColor)
-            setTextColor(textColor);
+            popupWindow.setBackgroundDrawable(Utils.getDrawable(context, R.drawable.ic_style_rect_round_none_white_none));
         popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
-
             @Override
             public void onDismiss() {
                 if (nothingSelected && onNothingSelectedListener != null) {
@@ -159,15 +153,6 @@ public class Spinner extends android.support.v7.widget.AppCompatTextView {
         });
     }
 
-    private void setTypeFont(Context context) {
-        try {
-            setTypeface(Typeface.createFromFile(CompressUtil.getDefaultFolderPath(context) +
-                    getResources().getString(R.string.str_font_regular)));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         popupWindow.setWidth(MeasureSpec.getSize(widthMeasureSpec));
@@ -178,41 +163,12 @@ public class Spinner extends android.support.v7.widget.AppCompatTextView {
     @Override
     public boolean onTouchEvent(@NonNull MotionEvent event) {
         if (event.getAction() == MotionEvent.ACTION_UP) {
-            if (!popupWindow.isShowing()) {
+            if (!popupWindow.isShowing())
                 expand();
-            } else {
+            else
                 collapse();
-            }
         }
         return super.onTouchEvent(event);
-    }
-
-    @Override
-    public void setBackgroundColor(int color) {
-        backgroundColor = color;
-        Drawable background = getBackground();
-        if (background instanceof StateListDrawable) { // pre-L
-            try {
-                Method getStateDrawable = StateListDrawable.class.getDeclaredMethod("getStateDrawable", int.class);
-                if (!getStateDrawable.isAccessible()) getStateDrawable.setAccessible(true);
-                int[] colors = {Utils.darker(color, 0.85f), color};
-                for (int i = 0; i < colors.length; i++) {
-                    ColorDrawable drawable = (ColorDrawable) getStateDrawable.invoke(background, i);
-                    drawable.setColor(colors[i]);
-                }
-            } catch (Exception e) {
-                Log.e("MaterialSpinner", "Error setting background color", e);
-            }
-        } else if (background != null) { // 21+ (RippleDrawable)
-            background.setColorFilter(color, PorterDuff.Mode.SRC_IN);
-        }
-        popupWindow.getBackground().setColorFilter(color, PorterDuff.Mode.SRC_IN);
-    }
-
-    @Override
-    public void setTextColor(int color) {
-        textColor = color;
-        super.setTextColor(color);
     }
 
     @Override
@@ -242,7 +198,6 @@ public class Spinner extends android.support.v7.widget.AppCompatTextView {
                 if (popupWindow != null) {
                     // Post the show request into the looper to avoid bad token exception
                     post(new Runnable() {
-
                         @Override
                         public void run() {
                             expand();
@@ -305,18 +260,8 @@ public class Spinner extends android.support.v7.widget.AppCompatTextView {
      */
     public <T> void setItems(@NonNull List<T> items) {
         numberOfItems = items.size();
-        adapter = new MaterialSpinnerAdapter<>(getContext(), items).setTextColor(textColor);
+        adapter = new SpinnerAdapter<>(getContext(), items);
         setAdapterInternal(adapter);
-    }
-
-    /**
-     * Set the dropdown items
-     *
-     * @param items A list of items
-     * @param <T>   The item type
-     */
-    public <T> void setItems(@NonNull T... items) {
-        setItems(Arrays.asList(items));
     }
 
     /**
@@ -325,11 +270,11 @@ public class Spinner extends android.support.v7.widget.AppCompatTextView {
      * @param adapter The list adapter
      */
     public void setAdapter(@NonNull ListAdapter adapter) {
-        this.adapter = new MaterialSpinnerAdapterWrapper(getContext(), adapter);
+        this.adapter = new SpinnerAdapterWrapper(getContext(), adapter);
         setAdapterInternal(this.adapter);
     }
 
-    private void setAdapterInternal(@NonNull MaterialSpinnerBaseAdapter adapter) {
+    private void setAdapterInternal(@NonNull SpinnerBaseAdapter adapter) {
         listView.setAdapter(adapter);
         if (selectedIndex >= numberOfItems) {
             selectedIndex = 0;
@@ -395,7 +340,6 @@ public class Spinner extends android.support.v7.widget.AppCompatTextView {
      * @param <T> Adapter item type
      */
     public interface OnItemSelectedListener<T> {
-
         /**
          * <p>Callback method to be invoked when an item in this view has been selected. This callback is invoked only when
          * the newly selected position is different from the previously selected position or if there was no selected
@@ -407,14 +351,12 @@ public class Spinner extends android.support.v7.widget.AppCompatTextView {
          * @param item     The selected item
          */
         void onItemSelected(Spinner view, int position, long id, T item);
-
     }
 
     /**
      * Interface definition for a callback to be invoked when the dropdown is dismissed and no item was selected.
      */
     interface OnNothingSelectedListener {
-
         /**
          * Callback method to be invoked when the {@link PopupWindow} is dismissed and no item was selected.
          *

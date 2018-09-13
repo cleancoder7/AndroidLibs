@@ -11,13 +11,13 @@ import android.widget.TextView;
 
 import me.imstudio.core.R;
 
-public abstract class MaterialSpinnerBaseAdapter<T> extends BaseAdapter {
+public abstract class SpinnerBaseAdapter<T> extends BaseAdapter {
 
     private final Context context;
     private int selectedIndex;
-    private int textColor;
+    private int textColor = Integer.MIN_VALUE;
 
-    MaterialSpinnerBaseAdapter(Context context) {
+    SpinnerBaseAdapter(Context context) {
         this.context = context;
     }
 
@@ -30,7 +30,8 @@ public abstract class MaterialSpinnerBaseAdapter<T> extends BaseAdapter {
             LayoutInflater inflater = LayoutInflater.from(context);
             convertView = inflater.inflate(R.layout.item_spinner, parent, false);
             textView = convertView.findViewById(R.id.text_view);
-            textView.setTextColor(textColor);
+            if (textColor != Integer.MIN_VALUE)
+                textView.setTextColor(textColor);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
                 Configuration config = context.getResources().getConfiguration();
                 if (config.getLayoutDirection() == View.LAYOUT_DIRECTION_RTL)
@@ -67,7 +68,7 @@ public abstract class MaterialSpinnerBaseAdapter<T> extends BaseAdapter {
 
     public abstract T get(int position);
 
-    public MaterialSpinnerBaseAdapter<T> setTextColor(int textColor) {
+    public SpinnerBaseAdapter<T> setTextColor(int textColor) {
         this.textColor = textColor;
         return this;
     }

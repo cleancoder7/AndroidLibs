@@ -30,6 +30,10 @@
     <me.imstudio.core.ui.Spinner
         android:id="@id/layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        app:ims_arrowTint="@android:color/darker_gray"
+        app:ims_backgroundDrawable="@drawable/ms_background_2"
+        app:ims_fontSrc="@string/str_font_regular"
+        app:ims_textColor="@android:color/darker_gray" />
 
 </LinearLayout>

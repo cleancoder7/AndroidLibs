@@ -3,11 +3,11 @@ package me.imstudio.core.ui.spinner;
 import android.content.Context;
 import android.widget.ListAdapter;
 
-public final class MaterialSpinnerAdapterWrapper extends MaterialSpinnerBaseAdapter {
+public final class SpinnerAdapterWrapper extends SpinnerBaseAdapter {
 
     private final ListAdapter listAdapter;
 
-    public MaterialSpinnerAdapterWrapper(Context context, ListAdapter toWrap) {
+    public SpinnerAdapterWrapper(Context context, ListAdapter toWrap) {
         super(context);
         listAdapter = toWrap;
     }
