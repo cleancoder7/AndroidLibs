@@ -32,6 +32,7 @@ import me.imstudio.core.ui.spinner.SpinnerAdapter;
 import me.imstudio.core.ui.spinner.SpinnerAdapterWrapper;
 import me.imstudio.core.ui.spinner.SpinnerBaseAdapter;
 import me.imstudio.core.util.CompressUtil;
+import me.imstudio.core.util.FileUtil;
 import me.imstudio.core.util.Utils;
 
 public class Spinner extends android.support.v7.widget.AppCompatTextView {
@@ -62,14 +63,28 @@ public class Spinner extends android.support.v7.widget.AppCompatTextView {
 
     private void installFonts(Context context, AttributeSet attrs) {
         int style = attrs.getAttributeIntValue("http://schemas.android.com/apk/res/android", "textStyle", Typeface.NORMAL);
-        if (style == Typeface.BOLD)
-            super.setTypeface(Typeface.createFromFile(
-                    CompressUtil.getDefaultFolderPath(context) +
-                            getResources().getString(R.string.str_font_bold)));
-        else
-            super.setTypeface(Typeface.createFromFile(
-                    CompressUtil.getDefaultFolderPath(context) +
-                            getResources().getString(R.string.str_font_regular)));
+        if (style == Typeface.BOLD) {
+            if (FileUtil.isExist(CompressUtil.getDefaultFolderPath(context) +
+                    getResources().getString(R.string.str_font_bold))) {
+                setTypeface(Typeface.createFromFile(
+                        CompressUtil.getDefaultFolderPath(context) +
+                                getResources().getString(R.string.str_font_bold)));
+            }
+        } else if (style == Typeface.ITALIC) {
+            if (FileUtil.isExist(CompressUtil.getDefaultFolderPath(context) +
+                    getResources().getString(R.string.str_font_italic))) {
+                setTypeface(Typeface.createFromFile(
+                        CompressUtil.getDefaultFolderPath(context) +
+                                getResources().getString(R.string.str_font_italic)));
+            }
+        } else {
+            if (FileUtil.isExist(CompressUtil.getDefaultFolderPath(context) +
+                    getResources().getString(R.string.str_font_regular))) {
+                setTypeface(Typeface.createFromFile(
+                        CompressUtil.getDefaultFolderPath(context) +
+                                getResources().getString(R.string.str_font_regular)));
+            }
+        }
     }
 
     private void init(Context context, AttributeSet attrs) {

@@ -27,6 +27,12 @@
         android:indeterminate="true"
         app:ims_progressTint="@android:color/holo_red_dark" />
 
+    <me.imstudio.core.ui.IMSToolBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:ims_layoutType="center"
+        app:ims_title="Danh sách hỗ trợ" />
+
     <me.imstudio.core.ui.Spinner
         android:id="@id/layout"
         android:layout_width="match_parent"

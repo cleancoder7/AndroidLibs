@@ -10,6 +10,7 @@ import android.util.AttributeSet;
 
 import me.imstudio.core.R;
 import me.imstudio.core.util.CompressUtil;
+import me.imstudio.core.util.FileUtil;
 
 public class Button extends android.support.v7.widget.AppCompatButton {
 
@@ -34,20 +35,30 @@ public class Button extends android.support.v7.widget.AppCompatButton {
     }
 
     private void init(Context context, AttributeSet attrs) {
-        try {
-            if (attrs != null) {
-                int style = attrs.getAttributeIntValue("http://schemas.android.com/apk/res/android", "textStyle", Typeface.NORMAL);
-                if (style == Typeface.BOLD)
+        if (attrs != null) {
+            int style = attrs.getAttributeIntValue("http://schemas.android.com/apk/res/android", "textStyle", Typeface.NORMAL);
+            if (style == Typeface.BOLD) {
+                if (FileUtil.isExist(CompressUtil.getDefaultFolderPath(context) +
+                        getResources().getString(R.string.str_font_bold))) {
                     super.setTypeface(Typeface.createFromFile(
                             CompressUtil.getDefaultFolderPath(context) +
                                     getResources().getString(R.string.str_font_bold)));
-                else
+                }
+            } else if (style == Typeface.ITALIC) {
+                if (FileUtil.isExist(CompressUtil.getDefaultFolderPath(context) +
+                        getResources().getString(R.string.str_font_italic))) {
+                    super.setTypeface(Typeface.createFromFile(
+                            CompressUtil.getDefaultFolderPath(context) +
+                                    getResources().getString(R.string.str_font_italic)));
+                }
+            } else {
+                if (FileUtil.isExist(CompressUtil.getDefaultFolderPath(context) +
+                        getResources().getString(R.string.str_font_regular))) {
                     super.setTypeface(Typeface.createFromFile(
                             CompressUtil.getDefaultFolderPath(context) +
                                     getResources().getString(R.string.str_font_regular)));
+                }
             }
-        } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 }

@@ -9,7 +9,6 @@
     <item name="edit_text" type="id" />
     <item name="text_title" type="id" />
     <item name="text_sub_title" type="id" />
-    <item name="rtc_toolbar" type="id" />
     <item name="image_view" type="id" />
     <item name="view_pager" type="id" />
     <item name="web_view" type="id" />
@@ -23,7 +22,7 @@
     <item name="layout_progress" type="id" />
     <item name="status_bar" type="id" />
     <item name="frame_layout" type="id" />
-    <item name="own_toolbar" type="id" />
+    <item name="toolbar" type="id" />
     <item name="recycler_view" type="id" />
     <item name="tabs" type="id" />
     <item name="indicator_layout" type="id" />
