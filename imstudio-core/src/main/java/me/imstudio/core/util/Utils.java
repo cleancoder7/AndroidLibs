@@ -4,8 +4,15 @@ import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.view.View;
+
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
 
 public final class Utils {
 
@@ -22,19 +29,6 @@ public final class Utils {
         Color.colorToHSV(color, hsv);
         hsv[2] *= multiplier; // value component
         return Color.HSVToColor(hsv);
-    }
-
-    /**
-     * Darkens a color by a given factor.
-     *
-     * @param color  the color to darken
-     * @param factor The factor to darken the color.
-     * @return darker version of specified color.
-     */
-    public static int darker(int color, float factor) {
-        return Color.argb(Color.alpha(color), Math.max((int) (Color.red(color) * factor), 0),
-                Math.max((int) (Color.green(color) * factor), 0),
-                Math.max((int) (Color.blue(color) * factor), 0));
     }
 
     /**
@@ -68,5 +62,48 @@ public final class Utils {
     public static int dpToPx(Context context, int dp) {
         DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
         return Math.round(dp * (displayMetrics.xdpi / DisplayMetrics.DENSITY_DEFAULT));
+    }
+
+    @NonNull
+    public static <T> T checkNotNull(@Nullable T object, String message) {
+        if (object == null)
+            throw new NullPointerException(message);
+        return object;
+    }
+
+    @NonNull
+    public static <T extends Collection<Y>, Y> T checkNotEmpty(@NonNull T collection) {
+        if (collection.isEmpty())
+            throw new IllegalArgumentException("Must not be empty.");
+        return collection;
+    }
+
+    public static <T> boolean checkNotEmpty(List<T> data) {
+        return data != null && data.size() > 0;
+    }
+
+    public static boolean checkNotEmpty(String... strings) {
+        if (strings != null && strings.length > 0) {
+            for (String string : strings) {
+                if (TextUtils.isEmpty(string))
+                    return false;
+            }
+        }
+        return true;
+    }
+
+    public static final class MapBuilder<K, V> {
+
+        private final HashMap<K, V> map = new HashMap<>();
+
+        public MapBuilder<K, V> put(K key, V value) {
+            map.put(key, value);
+            return this;
+        }
+
+        public HashMap<K, V> build() {
+            return map;
+        }
+
     }
 }
