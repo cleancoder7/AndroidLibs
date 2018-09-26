@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import java.util.Arrays;
 
+import me.imstudio.core.IMSSystemBar;
 import me.imstudio.core.ui.Spinner;
 
 public class MainActivity extends AppCompatActivity {
@@ -16,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        IMSSystemBar.INSTANCE.enableTransparentStatusBar(this);
         setContentView(R.layout.activity_main);
         spinnerExample();
     }
