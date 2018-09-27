@@ -9,10 +9,10 @@
         android:color="@android:color/darker_gray" />
 
     <corners
-        android:bottomLeftRadius="@dimen/cardCornerRadiusSmall"
-        android:bottomRightRadius="@dimen/cardCornerRadiusSmall"
-        android:radius="@dimen/cardCornerRadiusSmall"
-        android:topLeftRadius="@dimen/cardCornerRadiusSmall"
-        android:topRightRadius="@dimen/cardCornerRadiusSmall" />
+        android:bottomLeftRadius="@dimen/radius_card"
+        android:bottomRightRadius="@dimen/radius_card"
+        android:radius="@dimen/radius_card"
+        android:topLeftRadius="@dimen/radius_card"
+        android:topRightRadius="@dimen/radius_card" />
 
 </shape>

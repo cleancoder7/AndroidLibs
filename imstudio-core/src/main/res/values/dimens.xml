@@ -1,38 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <dimen name="image_height">96dp</dimen>
-    <dimen name="image_height_v1">128dp</dimen>
-    <dimen name="image_height_v2">164dp</dimen>
-    <dimen name="image_height_v3">172dp</dimen>
-    <dimen name="image_height_v3_5">196dp</dimen>
+    // Image size
+    <dimen name="height_image">96dp</dimen>
+    <dimen name="height_image_v1">128dp</dimen>
+    <dimen name="height_image_v2">164dp</dimen>
+    <dimen name="height_image_v3">172dp</dimen>
+    <dimen name="height_image_v3_5">196dp</dimen>
 
-    <dimen name="text_size">10sp</dimen>
-    <dimen name="text_size_v1">12sp</dimen>
-    <dimen name="text_size_v2">14sp</dimen>
-    <dimen name="text_size_v3">18sp</dimen>
-    <dimen name="text_size_v4">24sp</dimen>
+    // Text Size
+    <dimen name="size_text_min">10sp</dimen>
+    <dimen name="size_text_medium">12sp</dimen>
+    <dimen name="size_text_extra_medium">14sp</dimen>
+    <dimen name="size_text_large">18sp</dimen>
+    <dimen name="size_text_extra_large">24sp</dimen>
 
-    <dimen name="cardCornerRadiusSmall">2dp</dimen>
-    <dimen name="cardCornerRadius">5dp</dimen>
-    <dimen name="cardElevation">2dp</dimen>
+    // Radius
+    <dimen name="radius_card">2dp</dimen>
+    <dimen name="radius_card_medium">5dp</dimen>
+
+    // Elevation
+    <dimen name="elevation_card">2dp</dimen>
+    <dimen name="elevation_card_medium">5dp</dimen>
 
     <dimen name="margin_unit">1dp</dimen>
-    <dimen name="margin_half_s">2dp</dimen>
-    <dimen name="margin_half">4dp</dimen>
+    <dimen name="margin_extra_small">2dp</dimen>
+    <dimen name="margin_small">4dp</dimen>
     <dimen name="margin">8dp</dimen>
-    <dimen name="margin_x2">16dp</dimen>
-    <dimen name="margin_x3">24dp</dimen>
-    <dimen name="margin_x4">32dp</dimen>
-    <dimen name="margin_x7">32dp</dimen>
+    <dimen name="margin_medium">16dp</dimen>
+    <dimen name="margin_extra_medium">24dp</dimen>
+    <dimen name="margin_large">32dp</dimen>
+    <dimen name="margin_extra_large">48dp</dimen>
+    <dimen name="margin_x9">64dp</dimen>
+    <dimen name="margin_x10">72dp</dimen>
 
-    <dimen name="icon_size_x1">8dp</dimen>
-    <dimen name="icon_size_x2">16dp</dimen>
-    <dimen name="icon_size_x3">24dp</dimen>
-    <dimen name="icon_size_x4">32dp</dimen>
-    <dimen name="icon_size_x5">40dp</dimen>
-    <dimen name="icon_size_x6">48dp</dimen>
-    <dimen name="icon_size_x7">56dp</dimen>
-    <dimen name="icon_size_x8">64dp</dimen>
-    <dimen name="icon_size_x9">72dp</dimen>
+    <dimen name="size_icon">8dp</dimen>
+    <dimen name="size_icon_x2">16dp</dimen>
+    <dimen name="size_icon_x3">24dp</dimen>
+    <dimen name="size_icon_x4">32dp</dimen>
+    <dimen name="size_icon_x5">40dp</dimen>
+    <dimen name="size_icon_x6">48dp</dimen>
+    <dimen name="size_icon_x7">56dp</dimen>
+    <dimen name="size_icon_x8">64dp</dimen>
+    <dimen name="size_icon_x9">72dp</dimen>
+
 </resources>

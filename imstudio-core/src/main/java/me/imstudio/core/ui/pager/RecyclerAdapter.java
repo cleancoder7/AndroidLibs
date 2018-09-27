@@ -8,30 +8,30 @@ import android.view.View;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class XRecyclerAdapter<T extends XSelectable>
-        extends RecyclerView.Adapter<XRecyclerAdapter.XViewHolder> implements OnItemClick {
+public abstract class RecyclerAdapter<T extends Selectable>
+        extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> implements OnItemClick {
 
     protected List<T> mData;
     protected LayoutInflater inflater;
     protected int mMax = 1, mCount = 0;
     protected OnItemClick onItemClick;
 
-    protected XRecyclerAdapter() {
+    protected RecyclerAdapter() {
         mData = new ArrayList<>();
     }
 
-    protected XRecyclerAdapter(Context context) {
+    protected RecyclerAdapter(Context context) {
         this();
         if (inflater == null)
             inflater = LayoutInflater.from(context);
     }
 
-    public XRecyclerAdapter(Context context, OnItemClick callBack) {
+    public RecyclerAdapter(Context context, OnItemClick callBack) {
         this(context);
         this.onItemClick = callBack;
     }
 
-    protected T setSelectable(XViewHolder holder, int position) {
+    protected T setSelectable(ViewHolder holder, int position) {
         T item = mData.get(position);
         if (item != null) {
             holder.setItem(item);
@@ -103,12 +103,12 @@ public abstract class XRecyclerAdapter<T extends XSelectable>
 
     }
 
-    public class XViewHolder<T extends XSelectable> extends RecyclerView.ViewHolder {
+    public class ViewHolder<T extends Selectable> extends RecyclerView.ViewHolder {
 
         private T item;
         private OnItemClick onItemClick;
 
-        public XViewHolder(View itemView) {
+        public ViewHolder(View itemView) {
             super(itemView);
             setOnClickListener();
         }

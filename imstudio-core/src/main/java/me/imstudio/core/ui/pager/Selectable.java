@@ -1,6 +1,6 @@
 package me.imstudio.core.ui.pager;
 
-public abstract class XSelectable {
+public abstract class Selectable {
 
     private transient boolean isSelected;
 

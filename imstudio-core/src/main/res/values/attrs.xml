@@ -45,4 +45,12 @@
         <attr name="ims_arrowDrawable" format="reference" />
         <attr name="ims_backgroundDrawable" format="reference" />
     </declare-styleable>
+    <declare-styleable name="CheckBox">
+        <attr name="ims_duration" format="integer" />
+        <attr name="ims_strokeWidth" format="dimension" />
+        <attr name="ims_colorTick" format="color" />
+        <attr name="ims_colorChecked" format="color" />
+        <attr name="ims_colorUnchecked" format="color" />
+        <attr name="ims_colorUncheckedStroke" format="color" />
+    </declare-styleable>
 </resources>

@@ -64,7 +64,7 @@ public class DotsView extends View {
 
 
     private void init() {
-        maxDotSize = Utils.dpToPx(getContext(), 4);
+        maxDotSize = Utils.dp2Px(getContext(), 4);
         for (int i = 0; i < circlePaints.length; i++) {
             circlePaints[i] = new Paint();
             circlePaints[i].setStyle(Paint.Style.FILL);

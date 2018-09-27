@@ -14,7 +14,6 @@ import android.os.Parcelable;
 import android.support.annotation.ColorInt;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.MotionEvent;
@@ -108,7 +107,7 @@ public class Spinner extends android.support.v7.widget.AppCompatTextView {
         }
         Resources resources = getResources();
         int left, right, bottom, top;
-        left = right = bottom = top = resources.getDimensionPixelSize(R.dimen.margin_half);
+        left = right = bottom = top = resources.getDimensionPixelSize(R.dimen.margin_small);
         if (rtl)
             right = resources.getDimensionPixelSize(R.dimen.margin);
         else
@@ -154,7 +153,7 @@ public class Spinner extends android.support.v7.widget.AppCompatTextView {
             popupWindow.setElevation(16);
             popupWindow.setBackgroundDrawable(Utils.getDrawable(context, R.drawable.ms_drawable_default));
         } else
-            popupWindow.setBackgroundDrawable(Utils.getDrawable(context, R.drawable.ic_style_rect_round_none_white_none));
+            popupWindow.setBackgroundDrawable(Utils.getDrawable(context, R.drawable.all_style_rect_white));
         popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
             @Override
             public void onDismiss() {

@@ -40,7 +40,7 @@ public class AnimatedToggleButtonBuilder {
     }
 
     public AnimatedToggleButtonBuilder setImageSizeDp(int dp) {
-        sparkButton.imageSize = Utils.dpToPx(context, dp);
+        sparkButton.imageSize = Utils.dp2Px(context, dp);
         return this;
     }
 

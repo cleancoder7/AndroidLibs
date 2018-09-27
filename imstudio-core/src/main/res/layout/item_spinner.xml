@@ -12,7 +12,7 @@
         android:layout_gravity="center"
         android:ellipsize="marquee"
         android:gravity="center_vertical"
-        android:minHeight="@dimen/icon_size_x4"
+        android:minHeight="@dimen/size_icon_x4"
         android:paddingLeft="@dimen/margin"
         android:paddingRight="@dimen/margin" />
 

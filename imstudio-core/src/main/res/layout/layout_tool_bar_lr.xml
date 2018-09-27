@@ -23,7 +23,7 @@
                 style="@style/IMSTheme.IconClick"
                 android:layout_width="?actionBarSize"
                 android:layout_height="?actionBarSize"
-                android:padding="@dimen/margin_x2" />
+                android:padding="@dimen/margin_medium" />
         </RelativeLayout>
 
         <android.support.v7.widget.AppCompatImageView
@@ -32,7 +32,7 @@
             android:layout_width="?actionBarSize"
             android:layout_height="?actionBarSize"
             android:layout_gravity="center"
-            android:padding="@dimen/margin_x2" />
+            android:padding="@dimen/margin_medium" />
     </LinearLayout>
 
     <me.imstudio.core.ui.TextView
@@ -42,13 +42,13 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginLeft="@dimen/margin_x2"
-        android:layout_marginStart="@dimen/margin_x2"
+        android:layout_marginLeft="@dimen/margin_medium"
+        android:layout_marginStart="@dimen/margin_medium"
         android:ellipsize="end"
         android:gravity="center_horizontal"
         android:maxLines="1"
         android:textColor="@android:color/white"
-        android:textSize="@dimen/text_size_v1"
+        android:textSize="@dimen/size_text_medium"
         android:textStyle="bold" />
 
 </RelativeLayout>
