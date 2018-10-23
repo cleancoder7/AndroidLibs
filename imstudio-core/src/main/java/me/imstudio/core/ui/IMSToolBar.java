@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.widget.AppCompatImageView;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -49,13 +50,15 @@ public class IMSToolBar extends RelativeLayout {
             String title = array.getString(R.styleable.IMSToolBar_ims_title);
             if (!TextUtils.isEmpty(title))
                 setTitle(title);
+            float textSize = array.getDimension(R.styleable.IMSToolBar_ims_titleSize, -1);
+            if (textSize != -1)
+                tvTitle.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize);
             int l = array.getResourceId(R.styleable.IMSToolBar_ims_drawableLeft, -1);
             int r = array.getResourceId(R.styleable.IMSToolBar_ims_drawableRight, -1);
             if (l != -1)
                 setDrawableLeft(l);
             if (r != -1)
                 setDrawableRight(r);
-
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

@@ -7,11 +7,11 @@
 
     <me.imstudio.core.ui.widgets.AnimatedToggleButton
         android:id="@id/button"
-        android:layout_width="@dimen/icon_size_x5"
-        android:layout_height="@dimen/icon_size_x5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
         app:ims_animationSpeed="1"
-        app:ims_iconSize="@dimen/icon_size_x5"
+        app:ims_iconSize="@dimen/size_icon_x5"
         app:ims_imageOff="@drawable/ic_favorite"
         app:ims_imageOn="@drawable/ic_favorite_press" />
 
@@ -20,17 +20,19 @@
         android:layout_height="wrap_content" />
 
     <me.imstudio.core.ui.ProgressBar
-        android:layout_width="@dimen/icon_size_x4"
-        android:layout_height="@dimen/icon_size_x4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_margin="@dimen/margin_x2"
+        android:layout_margin="@dimen/margin"
         android:indeterminate="true"
+
         app:ims_progressTint="@android:color/holo_red_dark" />
 
     <me.imstudio.core.ui.IMSToolBar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:ims_layoutType="center"
+        app:ims_titleSize="@dimen/size_text_extra_medium"
         app:ims_title="Danh sách hỗ trợ" />
 
     <me.imstudio.core.ui.Spinner

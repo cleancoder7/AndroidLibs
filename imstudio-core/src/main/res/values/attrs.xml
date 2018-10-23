@@ -6,6 +6,7 @@
             <enum name="left" value="1" />
         </attr>
         <attr name="ims_title" format="string" />
+        <attr name="ims_titleSize" format="dimension" />
         <attr name="ims_titleColor" format="color" />
         <attr name="ims_background" format="color|reference" />
         <attr name="ims_drawableLeft" format="reference" />
