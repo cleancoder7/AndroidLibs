@@ -1,8 +1,17 @@
 package me.imstudio.core;
 
+import android.content.Context;
 import android.support.v4.app.Fragment;
 
 public class IMSFragment extends Fragment {
+
+    protected Context mContext;
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        mContext = context;
+    }
 
     protected void onSyncData() {
 
