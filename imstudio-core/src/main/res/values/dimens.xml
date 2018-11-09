@@ -12,6 +12,7 @@
     <dimen name="size_text_min">10sp</dimen>
     <dimen name="size_text_medium">12sp</dimen>
     <dimen name="size_text_extra_medium">14sp</dimen>
+    <dimen name="size_text_semi_large">16sp</dimen>
     <dimen name="size_text_large">18sp</dimen>
     <dimen name="size_text_extra_large">24sp</dimen>
 
