@@ -32,13 +32,16 @@ public abstract class RecyclerAdapter<T extends Selectable>
     }
 
     protected T setSelectable(ViewHolder holder, int position) {
-        T item = mData.get(position);
-        if (item != null) {
-            holder.setItem(item);
-            holder.setCallBack(this);
-            holder.setSelected(holder.getItem().isSelected());
+        if (mData != null && position < mData.size()) {
+            T item = mData.get(position);
+            if (item != null) {
+                holder.setItem(item);
+                holder.setCallBack(this);
+                holder.setSelected(holder.getItem().isSelected());
+            }
+            return item;
         }
-        return item;
+        return null;
     }
 
     @Override
