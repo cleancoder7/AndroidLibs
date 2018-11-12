@@ -103,7 +103,8 @@ public final class Utils {
         }
 
         public MapBuilder<K, V> putAll(Map<K, V> data) {
-            map.putAll(data);
+            if (data != null && data.size() > 0)
+                map.putAll(data);
             return this;
         }
 
