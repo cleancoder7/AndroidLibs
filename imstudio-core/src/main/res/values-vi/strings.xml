@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="str_not_net_message">
+        Kết nối không ổn định. Vui lòng kiểm tra Wi-Fi/3G.
+    </string>
+    <string name="str_version">Phiên bản</string>
+</resources>
