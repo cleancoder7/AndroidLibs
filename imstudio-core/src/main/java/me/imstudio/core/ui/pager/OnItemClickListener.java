@@ -1,5 +1,5 @@
 package me.imstudio.core.ui.pager;
 
-public interface OnItemClick {
+public interface OnItemClickListener {
     void onClicked(int position, boolean isSelected);
 }

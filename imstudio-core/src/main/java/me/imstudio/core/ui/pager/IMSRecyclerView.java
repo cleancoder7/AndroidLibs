@@ -8,29 +8,38 @@ import android.view.View;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class RecyclerAdapter<T extends Selectable>
-        extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> implements OnItemClick {
+import me.imstudio.core.util.Utils;
 
-    protected List<T> mData;
-    protected LayoutInflater inflater;
-    protected int mMax = 1, mCount = 0;
-    protected OnItemClick onItemClick;
+public abstract class IMSRecyclerView<T extends Selectable>
+        extends RecyclerView.Adapter<IMSRecyclerView.ViewHolder> implements OnItemClickListener {
 
-    protected RecyclerAdapter() {
-        mData = new ArrayList<>();
+    protected List<T> mData = null;
+    protected LayoutInflater inflater = null;
+    protected int mMaxSelected = 1;                    // Maximum items can be selected, default = 1
+    protected int mCurrentSelected = 0;                // Current items be selected
+    protected OnItemClickListener onItemClickListener;      // Callback event when row was clicked
+
+    protected IMSRecyclerView() {
+        this.mData = new ArrayList<>();
     }
 
-    protected RecyclerAdapter(Context context) {
+    protected IMSRecyclerView(Context context) {
         this();
         if (inflater == null)
             inflater = LayoutInflater.from(context);
     }
 
-    public RecyclerAdapter(Context context, OnItemClick callBack) {
+    public IMSRecyclerView(Context context, OnItemClickListener callBack) {
         this(context);
-        this.onItemClick = callBack;
+        this.onItemClickListener = callBack;
     }
 
+    public void setMaxSelected(int mMaxSelected) {
+        if (mMaxSelected >= 0)
+            this.mMaxSelected = mMaxSelected;
+    }
+
+    // Set default for item will be selected
     protected T setSelectable(ViewHolder holder, int position) {
         if (mData != null && position < mData.size()) {
             T item = mData.get(position);
@@ -55,7 +64,8 @@ public abstract class RecyclerAdapter<T extends Selectable>
         return mData.get(position);
     }
 
-    public List<T> getSelected() {
+    // get all of items were selected
+    public List<T> getSelectedItems() {
         List<T> res = new ArrayList<>();
         for (T item : mData) {
             if (item.isSelected())
@@ -64,52 +74,66 @@ public abstract class RecyclerAdapter<T extends Selectable>
         return res;
     }
 
+    // set selected state for specify position
     public void setSelected(int position) {
-        if (position < 0 || position >= mData.size())
+        if (!Utils.checkNotEmpty(mData) || position < 0 || position >= mData.size())
             return;
+        // set unselected state for others
         for (int i = 0; i < mData.size(); i++)
             mData.get(i).setSelected(i == position);
-        mCount = 1;
+        // Mark which item was selected
+        mCurrentSelected = 1;
         notifyDataSetChanged();
     }
 
+    // replace all of currents data by news list
     public void replaceAll(List<T> data) {
         if (data == null)
             return;
+        if (mData == null)
+            mData = new ArrayList<>();
         mData.clear();
         mData.addAll(data);
         notifyDataSetChanged();
     }
 
+    // add new list of items
     public void addAll(List<T> data) {
         if (data != null && !data.isEmpty()) {
-            mData.addAll(data);
+            if (this.mData == null)
+                this.mData = new ArrayList<>();
+            this.mData.addAll(data);
             notifyDataSetChanged();
         }
     }
 
+    // Clear all
     public void clearAll() {
-        mData.clear();
-        notifyDataSetChanged();
+        if (this.mData != null) {
+            mData.clear();
+            notifyDataSetChanged();
+        }
     }
 
+    // Used for only 1 choice purpose or single select event
     protected void applyForSingleChoice(int position) {
         for (int i = 0; i < mData.size(); i++)
             mData.get(i).setSelected(i == position);
         notifyDataSetChanged();
-        if (this.onItemClick != null)
-            this.onItemClick.onClicked(position, false);
+        if (this.onItemClickListener != null)
+            this.onItemClickListener.onClicked(position, false);
     }
 
     @Override
     public void onClicked(int position, boolean isSelected) {
-
+        if (this.onItemClickListener != null)
+            this.onItemClickListener.onClicked(position, isSelected);
     }
 
-    public class ViewHolder<T extends Selectable> extends RecyclerView.ViewHolder {
+    public class ViewHolder<t extends Selectable> extends RecyclerView.ViewHolder {
 
-        private T item;
-        private OnItemClick onItemClick;
+        private t item;
+        private OnItemClickListener onItemClick;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -118,18 +142,18 @@ public abstract class RecyclerAdapter<T extends Selectable>
 
         protected void setSelected(boolean isSelected) {
             setUISelected(isSelected);
-            item.setSelected(isSelected);
+            this.item.setSelected(isSelected);
         }
 
-        protected T getItem() {
+        protected t getItem() {
             return item;
         }
 
-        protected void setItem(T item) {
+        protected void setItem(t item) {
             this.item = item;
         }
 
-        protected void setCallBack(OnItemClick callBack) {
+        protected void setCallBack(OnItemClickListener callBack) {
             this.onItemClick = callBack;
         }
 
@@ -146,19 +170,19 @@ public abstract class RecyclerAdapter<T extends Selectable>
             public void onClick(View view) {
                 if (item != null) {
                     if (item.isSelected()) {
-                        if (mCount != 1 || mMax != 1) {
+                        if (mCurrentSelected != 1 || mMaxSelected != 1) {
                             setSelected(false);
-                            mCount--;
+                            mCurrentSelected--;
                             if (onItemClick != null)
                                 onItemClick.onClicked(getAdapterPosition(), false);
                         }
                     } else {
-                        if (mCount >= mMax) {
-                            if (mCount == 1 && mMax == 1)
+                        if (mCurrentSelected >= mMaxSelected) {
+                            if (mCurrentSelected == 1 && mMaxSelected == 1)
                                 applyForSingleChoice(getAdapterPosition());
                             return;
                         }
-                        mCount++;
+                        mCurrentSelected++;
                         setSelected(true);
                         if (onItemClick != null)
                             onItemClick.onClicked(getAdapterPosition(), true);
