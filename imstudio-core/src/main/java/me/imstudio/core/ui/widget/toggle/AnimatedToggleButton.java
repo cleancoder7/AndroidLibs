@@ -1,4 +1,4 @@
-package me.imstudio.core.ui.widgets;
+package me.imstudio.core.ui.widget.toggle;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -21,7 +21,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import me.imstudio.core.R;
-import me.imstudio.core.util.Utils;
+import me.imstudio.core.utils.Utils;
 
 public class AnimatedToggleButton extends FrameLayout implements View.OnClickListener {
 

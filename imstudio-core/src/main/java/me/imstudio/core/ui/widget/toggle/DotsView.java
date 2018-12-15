@@ -1,4 +1,4 @@
-package me.imstudio.core.ui.widgets;
+package me.imstudio.core.ui.widget.toggle;
 
 import android.animation.ArgbEvaluator;
 import android.annotation.TargetApi;
@@ -10,7 +10,7 @@ import android.util.AttributeSet;
 import android.util.Property;
 import android.view.View;
 
-import me.imstudio.core.util.Utils;
+import me.imstudio.core.utils.Utils;
 
 public class DotsView extends View {
 

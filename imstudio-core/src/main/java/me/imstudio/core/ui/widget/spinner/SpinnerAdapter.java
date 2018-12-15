@@ -1,4 +1,4 @@
-package me.imstudio.core.ui.spinner;
+package me.imstudio.core.ui.widget.spinner;
 
 import android.content.Context;
 

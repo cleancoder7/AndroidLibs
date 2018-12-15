@@ -1,4 +1,4 @@
-package me.imstudio.core.util;
+package me.imstudio.core.utils;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -11,7 +11,7 @@ import android.webkit.MimeTypeMap;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 
-public final class FileUtil {
+public final class FileUtils {
 
     public static String getMimeType(File file) {
 

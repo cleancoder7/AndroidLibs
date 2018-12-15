@@ -1,4 +1,4 @@
-package me.imstudio.core.ui;
+package me.imstudio.core.ui.widget;
 
 import android.content.Context;
 import android.content.res.AssetManager;
@@ -7,8 +7,6 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
-import me.imstudio.core.R;
 
 public class TabLayout extends android.support.design.widget.TabLayout {
 

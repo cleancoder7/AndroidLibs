@@ -35,7 +35,7 @@
             android:padding="@dimen/margin_medium" />
     </LinearLayout>
 
-    <me.imstudio.core.ui.TextView
+    <me.imstudio.core.ui.widget.TextView
         android:id="@id/text_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

@@ -1,4 +1,4 @@
-package me.imstudio.core.util;
+package me.imstudio.core.utils;
 
 import android.content.Context;
 import android.content.res.AssetManager;
@@ -14,7 +14,7 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 import java.util.zip.ZipInputStream;
 
-public final class CompressUtil {
+public final class CompressUtils {
 
     public static String getDefaultFolder(Context context) {
         return String.valueOf(context.getFilesDir().getAbsolutePath());

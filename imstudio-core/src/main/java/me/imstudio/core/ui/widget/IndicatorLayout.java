@@ -1,4 +1,4 @@
-package me.imstudio.core.ui;
+package me.imstudio.core.ui.widget;
 
 import android.annotation.TargetApi;
 import android.content.Context;

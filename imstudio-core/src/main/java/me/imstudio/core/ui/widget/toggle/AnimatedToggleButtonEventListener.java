@@ -1,4 +1,4 @@
-package me.imstudio.core.ui.widgets;
+package me.imstudio.core.ui.widget.toggle;
 
 import android.widget.ImageView;
 

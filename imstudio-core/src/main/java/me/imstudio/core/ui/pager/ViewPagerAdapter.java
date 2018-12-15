@@ -5,7 +5,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.util.SparseArray;
 
-import me.imstudio.core.IMSFragment;
+import me.imstudio.core.ui.fragment.IMSFragment;
 
 public class ViewPagerAdapter extends FragmentStatePagerAdapter {
 

@@ -1,4 +1,4 @@
-package me.imstudio.core.ui;
+package me.imstudio.core.ui.widget;
 
 import android.content.Context;
 import android.graphics.Typeface;
@@ -6,8 +6,8 @@ import android.support.design.widget.TextInputEditText;
 import android.util.AttributeSet;
 
 import me.imstudio.core.R;
-import me.imstudio.core.util.CompressUtil;
-import me.imstudio.core.util.FileUtil;
+import me.imstudio.core.utils.CompressUtils;
+import me.imstudio.core.utils.FileUtils;
 
 public class EditText extends TextInputEditText {
 
@@ -31,24 +31,24 @@ public class EditText extends TextInputEditText {
             if (attrs != null) {
                 int style = attrs.getAttributeIntValue("http://schemas.android.com/apk/res/android", "textStyle", Typeface.NORMAL);
                 if (style == Typeface.BOLD) {
-                    if (FileUtil.isExist(CompressUtil.getDefaultFolderPath(context) +
+                    if (FileUtils.isExist(CompressUtils.getDefaultFolderPath(context) +
                             getResources().getString(R.string.str_font_bold))) {
                         setTypeface(Typeface.createFromFile(
-                                CompressUtil.getDefaultFolderPath(context) +
+                                CompressUtils.getDefaultFolderPath(context) +
                                         getResources().getString(R.string.str_font_bold)));
                     }
                 } else if (style == Typeface.ITALIC) {
-                    if (FileUtil.isExist(CompressUtil.getDefaultFolderPath(context) +
+                    if (FileUtils.isExist(CompressUtils.getDefaultFolderPath(context) +
                             getResources().getString(R.string.str_font_italic))) {
                         setTypeface(Typeface.createFromFile(
-                                CompressUtil.getDefaultFolderPath(context) +
+                                CompressUtils.getDefaultFolderPath(context) +
                                         getResources().getString(R.string.str_font_italic)));
                     }
                 } else {
-                    if (FileUtil.isExist(CompressUtil.getDefaultFolderPath(context) +
+                    if (FileUtils.isExist(CompressUtils.getDefaultFolderPath(context) +
                             getResources().getString(R.string.str_font_regular))) {
                         setTypeface(Typeface.createFromFile(
-                                CompressUtil.getDefaultFolderPath(context) +
+                                CompressUtils.getDefaultFolderPath(context) +
                                         getResources().getString(R.string.str_font_regular)));
                     }
                 }

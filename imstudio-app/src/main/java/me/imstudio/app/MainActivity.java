@@ -6,7 +6,7 @@ import android.os.Bundle;
 import java.util.Arrays;
 
 import me.imstudio.core.IMSSystemBar;
-import me.imstudio.core.ui.Spinner;
+import me.imstudio.core.ui.widget.spinner.Spinner;
 
 public class MainActivity extends AppCompatActivity {
 

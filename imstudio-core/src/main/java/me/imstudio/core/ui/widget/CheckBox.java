@@ -1,4 +1,4 @@
-package me.imstudio.core.ui;
+package me.imstudio.core.ui.widget;
 
 import android.animation.ValueAnimator;
 import android.annotation.TargetApi;
@@ -18,7 +18,7 @@ import android.view.animation.LinearInterpolator;
 import android.widget.Checkable;
 
 import me.imstudio.core.R;
-import me.imstudio.core.util.Utils;
+import me.imstudio.core.utils.Utils;
 
 public class CheckBox extends View implements Checkable {
 

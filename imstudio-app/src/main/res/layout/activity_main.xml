@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <me.imstudio.core.ui.widgets.AnimatedToggleButton
+    <me.imstudio.core.ui.widget.toggle.AnimatedToggleButton
         android:id="@id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -15,11 +15,11 @@
         app:ims_imageOff="@drawable/ic_favorite"
         app:ims_imageOn="@drawable/ic_favorite_press" />
 
-    <me.imstudio.core.ui.TabLayout
+    <me.imstudio.core.ui.widget.TabLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <me.imstudio.core.ui.ProgressBar
+    <me.imstudio.core.ui.widget.ProgressBar
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -28,14 +28,14 @@
 
         app:ims_progressTint="@android:color/holo_red_dark" />
 
-    <me.imstudio.core.ui.IMSToolBar
+    <me.imstudio.core.ui.widget.IMSToolBar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:ims_layoutType="center"
         app:ims_titleSize="@dimen/size_text_extra_medium"
         app:ims_title="Danh sách hỗ trợ" />
 
-    <me.imstudio.core.ui.Spinner
+    <me.imstudio.core.ui.widget.spinner.Spinner
         android:id="@id/layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -44,7 +44,7 @@
         app:ims_fontSrc="@string/str_font_regular"
         app:ims_textColor="@android:color/darker_gray" />
 
-    <me.imstudio.core.ui.CheckBox
+    <me.imstudio.core.ui.widget.CheckBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 </LinearLayout>

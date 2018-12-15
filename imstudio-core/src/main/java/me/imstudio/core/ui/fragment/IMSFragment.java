@@ -1,4 +1,4 @@
-package me.imstudio.core;
+package me.imstudio.core.ui.fragment;
 
 import android.content.Context;
 import android.support.v4.app.Fragment;

@@ -8,7 +8,7 @@ import android.view.View;
 import java.util.ArrayList;
 import java.util.List;
 
-import me.imstudio.core.util.Utils;
+import me.imstudio.core.utils.Utils;
 
 public abstract class IMSRecyclerView<T extends Selectable>
         extends RecyclerView.Adapter<IMSRecyclerView.ViewHolder> implements OnItemClickListener {

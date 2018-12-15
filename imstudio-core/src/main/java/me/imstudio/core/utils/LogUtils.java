@@ -1,12 +1,12 @@
-package me.imstudio.core.util;
+package me.imstudio.core.utils;
 
 import android.util.Log;
 
 import java.util.Calendar;
 
-public final class LogUtil {
+public final class LogUtils {
 
-    public static String TAG = LogUtil.class.getSimpleName();
+    public static String TAG = LogUtils.class.getSimpleName();
 
     static boolean mIsDebug = true;
 
