@@ -1,12 +1,15 @@
 package me.imstudio.core.ui.fragment;
 
+import android.app.Activity;
 import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 
 public abstract class IMSFragment extends Fragment implements IIMSFragment {
 
@@ -15,12 +18,24 @@ public abstract class IMSFragment extends Fragment implements IIMSFragment {
 
     protected View rootView;
     protected Context mContext;
-    protected long mStartTime = 0;
+    protected Activity mActivity;
+    protected long mStartTime = 0L;
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        this.mContext = context;
+        if (context instanceof Activity)
+            this.mActivity = (Activity) context;
+        else
+            this.mContext = context;
+    }
+
+    @SuppressWarnings("deprecation")
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M)
+            this.mActivity = activity;
     }
 
     @Override
@@ -31,6 +46,22 @@ public abstract class IMSFragment extends Fragment implements IIMSFragment {
         onSyncEvents();
         onSyncData();
         return rootView;
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        hideKeyboardIfNeed();
+    }
+
+    public void hideKeyboardIfNeed() {
+        if (mActivity == null)
+            return;
+        InputMethodManager inputMethodManager = (InputMethodManager) mActivity.getSystemService(Context.INPUT_METHOD_SERVICE);
+        View v = mActivity.getCurrentFocus();
+        if (v == null || inputMethodManager == null)
+            return;
+        inputMethodManager.hideSoftInputFromWindow(v.getWindowToken(), 0);
     }
 
     protected void setMaxWaitingTime(int maxWaitingTime) {
