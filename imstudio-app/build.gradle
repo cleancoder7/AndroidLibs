@@ -26,8 +26,8 @@ android {
 }
 
 dependencies {
-    compile project(':imstudio-core')
-    compile fileTree(dir: "$buildDir/native-libs", include: 'native-libs.jar')
+    api project(':imstudio-core')
+    api fileTree(dir: "$buildDir/native-libs", include: 'native-libs.jar')
 }
 task nativeLibsToJar(type: Jar, description: 'create a jar archive of the native libs') {
     destinationDir file("$buildDir/native-libs")

@@ -1,35 +1,45 @@
 package me.imstudio.core.ui.fragment;
 
 import android.content.Context;
+import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
-public class IMSFragment extends Fragment {
+public abstract class IMSFragment extends Fragment implements IIMSFragment {
 
+    protected static String TAG = IMSFragment.class.getSimpleName();
+    protected int MAX_WAITING_TIME = 600;   // Mills
+
+    protected View rootView;
     protected Context mContext;
+    protected long mStartTime = 0;
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        mContext = context;
+        this.mContext = context;
     }
 
-    protected void onSyncData() {
-
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        TAG = this.getClass().getSimpleName();
+        rootView = inflater.inflate(getLayout(), container, false);
+        onSyncViews(rootView);
+        onSyncEvents();
+        onSyncData();
+        return rootView;
     }
 
-    protected void onSyncViews() {
-
+    protected void setMaxWaitingTime(int maxWaitingTime) {
+        this.MAX_WAITING_TIME = maxWaitingTime;
     }
 
-    protected void onSyncEvents() {
-
-    }
-
-    private long mStartTime = 0;
-
-    protected boolean isEnoughTime() {
+    protected boolean isWaitingTime() {
         long now = System.currentTimeMillis();
-        boolean res = now - mStartTime >= 600;
+        boolean res = now - mStartTime >= MAX_WAITING_TIME;
         mStartTime = now;
         return res;
     }
