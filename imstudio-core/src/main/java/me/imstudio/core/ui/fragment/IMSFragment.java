@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,8 +18,8 @@ public abstract class IMSFragment extends Fragment implements IIMSFragment {
     protected int MAX_WAITING_TIME = 600;   // Mills
 
     protected View rootView;
-    protected Context mContext;
-    protected Activity mActivity;
+    private Context mContext;
+    private Activity mActivity;
     protected long mStartTime = 0L;
 
     @Override
@@ -28,6 +29,13 @@ public abstract class IMSFragment extends Fragment implements IIMSFragment {
             this.mActivity = (Activity) context;
         else
             this.mContext = context;
+    }
+
+    @Override
+    public Context getContext() {
+        if (mContext != null)
+            return mContext;
+        return mActivity;
     }
 
     @SuppressWarnings("deprecation")

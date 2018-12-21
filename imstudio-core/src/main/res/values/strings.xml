@@ -4,7 +4,4 @@
         You are not connected to the internet. Make sure Wi-Fi/3G is on,\nAirplane Mode is off and try again.
     </string>
     <string name="str_version">Version</string>
-    <string name="str_font_bold">bold.ttf</string>
-    <string name="str_font_regular">regular.ttf</string>
-    <string name="str_font_italic">italic.ttf</string>
 </resources>
