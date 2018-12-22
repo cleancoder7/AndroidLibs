@@ -35,6 +35,8 @@ public abstract class IMSFragment extends Fragment implements IIMSFragment {
     public Context getContext() {
         if (mContext != null)
             return mContext;
+        if (mActivity == null)
+            throw new NullPointerException();
         return mActivity;
     }
 
