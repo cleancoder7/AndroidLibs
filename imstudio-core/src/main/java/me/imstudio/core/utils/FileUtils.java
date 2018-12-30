@@ -102,38 +102,6 @@ public final class FileUtils {
     }
 
     /**
-     * Renames the source file to the target file. If the target file exists, then we attempt to
-     * delete it. If the delete or the rename operation fails, then we raise an exception
-     *
-     * @param source the source file
-     * @param target the new 'name' for the source file
-     * @throws IOException
-     */
-    public static void rename(File source, File target) throws RenameException {
-        Preconditions.checkNotNull(source);
-        Preconditions.checkNotNull(target);
-        // delete the target first - but ignore the result
-        target.delete();
-
-        if (source.renameTo(target)) {
-            return;
-        }
-
-        Throwable innerException = null;
-        if (target.exists()) {
-            innerException = new FileDeleteException(target.getAbsolutePath());
-        } else if (!source.getParentFile().exists()) {
-            innerException = new ParentDirNotFoundException(source.getAbsolutePath());
-        } else if (!source.exists()) {
-            innerException = new FileNotFoundException(source.getAbsolutePath());
-        }
-
-        throw new RenameException(
-                "Unknown error renaming " + source.getAbsolutePath() + " to " + target.getAbsolutePath(),
-                innerException);
-    }
-
-    /**
      * A specialization of FileNotFoundException when the parent-dir doesn't exist
      */
     public static class ParentDirNotFoundException extends FileNotFoundException {
