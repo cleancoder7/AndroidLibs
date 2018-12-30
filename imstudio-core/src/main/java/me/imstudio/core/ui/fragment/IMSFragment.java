@@ -5,7 +5,6 @@ import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -74,11 +73,11 @@ public abstract class IMSFragment extends Fragment implements IIMSFragment {
         inputMethodManager.hideSoftInputFromWindow(v.getWindowToken(), 0);
     }
 
-    protected void setMaxWaitingTime(int maxWaitingTime) {
+    protected void setWaitingTime(int maxWaitingTime) {
         this.MAX_WAITING_TIME = maxWaitingTime;
     }
 
-    protected boolean isWaitingTime() {
+    protected boolean isLongEnough() {
         long now = System.currentTimeMillis();
         boolean res = now - mStartTime >= MAX_WAITING_TIME;
         mStartTime = now;
