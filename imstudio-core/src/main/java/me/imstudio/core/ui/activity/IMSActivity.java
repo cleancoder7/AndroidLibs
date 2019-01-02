@@ -12,7 +12,7 @@ public abstract class IMSActivity extends AppCompatActivity implements IIMSActiv
     protected static final String KEY_CLASS = "KEY_CLASS";
     protected Class className;
 
-    protected int MAX_WAITING_TIME = 600;   // Mills
+    protected int MAX_WAITING_TIME = 300;   // Mills
     private long mStartTime = 0L;
 
     @Override
@@ -37,7 +37,7 @@ public abstract class IMSActivity extends AppCompatActivity implements IIMSActiv
         hideKeyboardIfNeed();
     }
 
-    protected void setMaxWaitingTime(int maxWaitingTime) {
+    protected void setWaitingTime(int maxWaitingTime) {
         this.MAX_WAITING_TIME = maxWaitingTime;
     }
 
@@ -49,7 +49,7 @@ public abstract class IMSActivity extends AppCompatActivity implements IIMSActiv
         inputMethodManager.hideSoftInputFromWindow(v.getWindowToken(), 0);
     }
 
-    protected boolean isWaitingTime() {
+    protected boolean isLongEnough() {
         long now = System.currentTimeMillis();
         boolean res = now - mStartTime >= MAX_WAITING_TIME;
         mStartTime = now;
