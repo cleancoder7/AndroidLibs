@@ -1,8 +1,6 @@
 package me.imstudio.core.ui.fragment;
 
-import android.app.Activity;
 import android.content.Context;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -17,35 +15,7 @@ public abstract class IMSFragment extends Fragment implements IIMSFragment {
     protected int MAX_WAITING_TIME = 300;   // Mills
 
     protected View rootView;
-    private Context mContext;
-    private Activity mActivity;
     protected long mStartTime = 0L;
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof Activity)
-            this.mActivity = (Activity) context;
-        else
-            this.mContext = context;
-    }
-
-    @Override
-    public Context getContext() {
-        if (mContext != null)
-            return mContext;
-        if (mActivity == null)
-            throw new NullPointerException();
-        return mActivity;
-    }
-
-    @SuppressWarnings("deprecation")
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M)
-            this.mActivity = activity;
-    }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -64,13 +34,15 @@ public abstract class IMSFragment extends Fragment implements IIMSFragment {
     }
 
     public void hideKeyboardIfNeed() {
-        if (mActivity == null)
-            return;
-        InputMethodManager inputMethodManager = (InputMethodManager) mActivity.getSystemService(Context.INPUT_METHOD_SERVICE);
-        View v = mActivity.getCurrentFocus();
-        if (v == null || inputMethodManager == null)
-            return;
-        inputMethodManager.hideSoftInputFromWindow(v.getWindowToken(), 0);
+        try {
+            InputMethodManager inputMethodManager = (InputMethodManager) requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+            View v = requireActivity().getCurrentFocus();
+            if (v == null || inputMethodManager == null)
+                return;
+            inputMethodManager.hideSoftInputFromWindow(v.getWindowToken(), 0);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     protected void setWaitingTime(int maxWaitingTime) {
