@@ -138,13 +138,13 @@ public abstract class IMSRecyclerView<T extends Selectable>
             mData.get(i).setSelected(i == position);
         notifyDataSetChanged();
         if (this.onItemClickListener != null)
-            this.onItemClickListener.onItemSelected(position, false);
+            this.onItemClickListener.onItemClicked(null, position, false);
     }
 
     @Override
-    public void onItemSelected(int position, boolean isSelected) {
+    public void onItemClicked(View view, int position, boolean isSelected) {
         if (this.onItemClickListener != null)
-            this.onItemClickListener.onItemSelected(position, isSelected);
+            this.onItemClickListener.onItemClicked(view, position, isSelected);
     }
 
     public class ViewHolder<t extends Selectable> extends RecyclerView.ViewHolder {
@@ -191,7 +191,7 @@ public abstract class IMSRecyclerView<T extends Selectable>
                             setSelected(false);
                             mCurrentSelected--;
                             if (onItemClick != null)
-                                onItemClick.onItemSelected(getAdapterPosition(), false);
+                                onItemClick.onItemClicked(null, getAdapterPosition(), false);
                         }
                     } else {
                         if (mCurrentSelected >= mMaxSelected) {
@@ -202,7 +202,7 @@ public abstract class IMSRecyclerView<T extends Selectable>
                         mCurrentSelected++;
                         setSelected(true);
                         if (onItemClick != null)
-                            onItemClick.onItemSelected(getAdapterPosition(), true);
+                            onItemClick.onItemClicked(null, getAdapterPosition(), true);
                     }
                 }
             }
