@@ -5,11 +5,9 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.util.SparseArray;
 
-import me.imstudio.core.ui.fragment.IMSFragment;
-
 public class ViewPagerAdapter extends FragmentStatePagerAdapter {
 
-    private SparseArray<IMSFragment> mFragmentList;
+    private SparseArray<Fragment> mFragmentList;
 
     public ViewPagerAdapter(FragmentManager manager) {
         super(manager);
@@ -26,12 +24,12 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
         return mFragmentList.size();
     }
 
-    public void addFrag(int key, IMSFragment fragment) {
+    public void addFrag(int key, Fragment fragment) {
         mFragmentList.put(key, fragment);
         notifyDataSetChanged();
     }
 
-    public void replaceAll(SparseArray<IMSFragment> array) {
+    public void replaceAll(SparseArray<Fragment> array) {
         mFragmentList = array;
         notifyDataSetChanged();
     }

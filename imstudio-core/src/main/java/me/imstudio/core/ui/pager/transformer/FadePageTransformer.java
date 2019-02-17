@@ -1,4 +1,4 @@
-package me.imstudio.core.ui.pager;
+package me.imstudio.core.ui.pager.transformer;
 
 import android.support.v4.view.ViewPager;
 import android.view.View;

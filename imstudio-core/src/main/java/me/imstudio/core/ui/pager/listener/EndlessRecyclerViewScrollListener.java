@@ -1,4 +1,4 @@
-package me.imstudio.core.ui.pager;
+package me.imstudio.core.ui.pager.listener;
 
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;

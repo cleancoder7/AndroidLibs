@@ -1,4 +1,4 @@
-package me.imstudio.core.ui.pager;
+package me.imstudio.core.ui.pager.decoration;
 
 import android.graphics.Rect;
 import android.support.v7.widget.RecyclerView;

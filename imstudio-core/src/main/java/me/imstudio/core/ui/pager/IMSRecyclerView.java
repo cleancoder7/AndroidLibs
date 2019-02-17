@@ -8,12 +8,13 @@ import android.view.View;
 import java.util.ArrayList;
 import java.util.List;
 
+import me.imstudio.core.ui.pager.listener.OnItemClickListener;
 import me.imstudio.core.utils.Utils;
 
 public abstract class IMSRecyclerView<T extends Selectable>
         extends RecyclerView.Adapter<IMSRecyclerView.ViewHolder> implements OnItemClickListener {
 
-    protected List<T> mData = null;
+    protected List<T> mData;
     protected LayoutInflater inflater = null;
     protected int mMaxSelected = 1;                    // Maximum items can be selected, default = 1
     protected int mCurrentSelected = 0;                // Current items be selected
@@ -103,6 +104,22 @@ public abstract class IMSRecyclerView<T extends Selectable>
             if (this.mData == null)
                 this.mData = new ArrayList<>();
             this.mData.addAll(data);
+            notifyDataSetChanged();
+        }
+    }
+
+    public void addAll(List<T> data, boolean isDistinct) {
+        if (data != null && !data.isEmpty()) {
+            if (this.mData == null)
+                this.mData = new ArrayList<>();
+            if (isDistinct) {   // Check if distinct
+                for (T item : data) {
+                    // Check if item existed
+                    if (!this.mData.contains(item))
+                        this.mData.add(item);
+                }
+            } else
+                this.mData.addAll(data);
             notifyDataSetChanged();
         }
     }
