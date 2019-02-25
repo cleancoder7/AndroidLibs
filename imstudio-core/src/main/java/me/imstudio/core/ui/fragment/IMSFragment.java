@@ -11,7 +11,7 @@ import android.view.inputmethod.InputMethodManager;
 
 public abstract class IMSFragment extends Fragment implements IIMSFragment {
 
-    protected static String TAG = IMSFragment.class.getSimpleName();
+    private String TAG = IMSFragment.class.getSimpleName();
     protected int MAX_WAITING_TIME = 300;   // Mills
 
     protected View rootView;
@@ -31,6 +31,10 @@ public abstract class IMSFragment extends Fragment implements IIMSFragment {
     public void onPause() {
         super.onPause();
         hideKeyboardIfNeed();
+    }
+
+    public String getTAG() {
+        return TAG;
     }
 
     public void hideKeyboardIfNeed() {

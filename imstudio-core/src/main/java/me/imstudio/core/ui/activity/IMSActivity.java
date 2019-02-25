@@ -8,7 +8,7 @@ import android.view.inputmethod.InputMethodManager;
 
 public abstract class IMSActivity extends AppCompatActivity implements IIMSActivity {
 
-    protected static String TAG = IMSActivity.class.getSimpleName();
+    private String TAG = IMSActivity.class.getSimpleName();
     protected static final String KEY_CLASS = "KEY_CLASS";
     protected Class className;
 
@@ -47,6 +47,10 @@ public abstract class IMSActivity extends AppCompatActivity implements IIMSActiv
         if (v == null || inputMethodManager == null)
             return;
         inputMethodManager.hideSoftInputFromWindow(v.getWindowToken(), 0);
+    }
+
+    public String getTAG() {
+        return TAG;
     }
 
     protected boolean isLongEnough() {
