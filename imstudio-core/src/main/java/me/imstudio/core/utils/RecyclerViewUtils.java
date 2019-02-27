@@ -1,0 +1,91 @@
+package me.imstudio.core.utils;
+
+import android.support.annotation.NonNull;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+
+/*
+    RecyclerViewUtils: Helper class to build up with recycler view faster
+*/
+public final class RecyclerViewUtils {
+
+    private static final String TAG = RecyclerViewUtils.class.getSimpleName();
+
+    private RecyclerView recyclerView;
+    private static RecyclerViewUtils instance;
+
+    private RecyclerViewUtils() {
+        LogUtils.log(TAG, "Can not use this constructor");
+    }
+
+    @NonNull
+    public static RecyclerViewUtils plug() {
+        if (instance == null)
+            synchronized (RecyclerViewUtils.class) {
+                if (instance == null)
+                    instance = new RecyclerViewUtils();
+            }
+        return instance;
+    }
+
+    private RecyclerViewUtils of(RecyclerView recyclerView) {
+        this.recyclerView = recyclerView;
+        return this;
+    }
+
+
+    public RecyclerViewUtils setLayoutManager(RecyclerView.LayoutManager layoutManager) {
+        if (this.recyclerView != null)
+            this.recyclerView.setLayoutManager(layoutManager);
+        else
+            errorMustBeCallOfFirst();
+        return this;
+    }
+
+    public RecyclerViewUtils initializeWithDefaultLinearLayout(int orientation) {
+        return initializeWithDefaults().setLinearLayout(orientation, false);
+    }
+
+    public RecyclerViewUtils initializeWithDefaultGridLayout(int spanCount) {
+        return initializeWithDefaults().setLayoutManager(
+                new GridLayoutManager(this.recyclerView.getContext(), spanCount));
+    }
+
+    public RecyclerViewUtils setLinearLayout(int orientation, boolean reverseLayout) {
+        if (this.recyclerView != null)
+            this.recyclerView.setLayoutManager(
+                    new LinearLayoutManager(this.recyclerView.getContext(), orientation, reverseLayout));
+        else
+            errorMustBeCallOfFirst();
+        return this;
+    }
+
+    public RecyclerViewUtils addItemDecoration(RecyclerView.ItemDecoration decor) {
+        if (this.recyclerView != null)
+            recyclerView.addItemDecoration(decor);
+        else
+            errorMustBeCallOfFirst();
+        return this;
+    }
+
+    public void setAdapter(@NonNull RecyclerView.Adapter adapter) {
+        if (recyclerView != null)
+            this.recyclerView.setAdapter(adapter);
+        else
+            errorMustBeCallOfFirst();
+    }
+
+    public RecyclerViewUtils initializeWithDefaults() {
+        if (recyclerView != null) {
+            this.recyclerView.setHasFixedSize(true);
+            this.recyclerView.setNestedScrollingEnabled(false);
+        } else
+            errorMustBeCallOfFirst();
+        return this;
+    }
+
+    private void errorMustBeCallOfFirst() {
+        LogUtils.log(TAG, "--call \"of\" -- recycler view first");
+    }
+}
