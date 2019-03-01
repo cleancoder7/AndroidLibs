@@ -26,17 +26,29 @@ import static com.bumptech.glide.request.RequestOptions.overrideOf;
 import static com.bumptech.glide.request.RequestOptions.placeholderOf;
 import static com.bumptech.glide.request.RequestOptions.priorityOf;
 
-public final class GlideUtils {
+public final class GlideLoader implements ImageLoaderInterface {
 
-    public static <T> void load(ImageView imageView, T resource) {
+    @Override
+    public <T> void load(ImageView imageView, T resource) {
         loadDefault(imageView, resource, R.drawable.ic_image_holder, TransformType.NORMAL);
     }
 
-    public static <T> void load(ImageView imageView, T resource, @TransformType int transformType) {
+    @Override
+    public <T> void load(ImageView imageView, T resource, @TransformType int transformType) {
         loadDefault(imageView, resource, R.drawable.ic_image_holder, transformType);
     }
 
-    public static void loadWithHeaders(ImageView imageView, String url, LinkedHashMap<String, String> headers, @TransformType int transformType) {
+    @Override
+    public void loadWithHeaders(ImageView imageView, String url, LinkedHashMap<String, String> headers) {
+        LazyHeaders.Builder builder = new LazyHeaders.Builder();
+        for (Map.Entry<String, String> set : headers.entrySet())
+            builder.addHeader(set.getKey(), set.getValue());
+        GlideUrl glideUrl = new GlideUrl(url, builder.build());
+        loadDefault(imageView, glideUrl, R.drawable.ic_image_holder, TransformType.NORMAL);
+    }
+
+    @Override
+    public void loadWithHeaders(ImageView imageView, String url, LinkedHashMap<String, String> headers, @TransformType int transformType) {
         LazyHeaders.Builder builder = new LazyHeaders.Builder();
         for (Map.Entry<String, String> set : headers.entrySet()) {
             builder.addHeader(set.getKey(), set.getValue());
@@ -45,7 +57,8 @@ public final class GlideUtils {
         loadDefault(imageView, glideUrl, R.drawable.ic_image_holder, transformType);
     }
 
-    public static <T> void loadDefault(ImageView imageView, T resource, int defaultDrawable, @TransformType int transformType) {
+    @Override
+    public <T> void loadDefault(ImageView imageView, T resource, int defaultDrawable, @TransformType int transformType) {
         switch (transformType) {
             case TransformType.NORMAL:
                 Glide.with(imageView.getContext())
@@ -84,9 +97,10 @@ public final class GlideUtils {
 
     }
 
-    public static <T> void loadDefaulOverride(ImageView imageView, T resource, int defaultDrawable,
-                                              @IntRange(from = 0) int sizeOfOverride,
-                                              @TransformType int transformType) {
+    @Override
+    public <T> void loadDefaultOverride(ImageView imageView, T resource, int defaultDrawable,
+                                        @IntRange(from = 0) int sizeOfOverride,
+                                        @TransformType int transformType) {
         switch (transformType) {
             case TransformType.NORMAL:
                 normalWithDefaultOverride(imageView, resource, defaultDrawable, sizeOfOverride);
@@ -100,7 +114,8 @@ public final class GlideUtils {
         }
     }
 
-    public static <T> void normalWithDefaultOverride(ImageView imageView, T resource, int defaultDrawable, @IntRange(from = 0) int sizeOfOverride) {
+    @Override
+    public <T> void normalWithDefaultOverride(ImageView imageView, T resource, int defaultDrawable, @IntRange(from = 0) int sizeOfOverride) {
 
         Glide.with(imageView.getContext())
                 .load(resource)
@@ -114,7 +129,8 @@ public final class GlideUtils {
                 .into(imageView);
     }
 
-    public static <T> void circleWithDefaultOverride(ImageView imageView, T resource, int defaultDrawable, @IntRange(from = 0) int sizeOfOverride) {
+    @Override
+    public <T> void circleWithDefaultOverride(ImageView imageView, T resource, int defaultDrawable, @IntRange(from = 0) int sizeOfOverride) {
 
         Glide.with(imageView.getContext())
                 .load(resource)
@@ -127,7 +143,8 @@ public final class GlideUtils {
                 .into(imageView);
     }
 
-    public static <T> void fitCenterWithDefaultOverride(ImageView imageView, T resource, int defaultDrawable, @IntRange(from = 0) int sizeOfOverride) {
+    @Override
+    public <T> void fitCenterWithDefaultOverride(ImageView imageView, T resource, int defaultDrawable, @IntRange(from = 0) int sizeOfOverride) {
 
         Glide.with(imageView.getContext())
                 .load(resource)
