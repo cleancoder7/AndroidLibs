@@ -1,9 +1,11 @@
 package me.imstudio.core.utils;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.DisplayMetrics;
 
 /*
     RecyclerViewUtils: Helper class to build up with recycler view faster
@@ -16,7 +18,7 @@ public final class RecyclerViewUtils {
     private static RecyclerViewUtils instance;
 
     private RecyclerViewUtils() {
-        LogUtils.log(TAG, "Can not use this constructor");
+
     }
 
     @NonNull
@@ -29,7 +31,7 @@ public final class RecyclerViewUtils {
         return instance;
     }
 
-    private RecyclerViewUtils of(RecyclerView recyclerView) {
+    public RecyclerViewUtils of(RecyclerView recyclerView) {
         this.recyclerView = recyclerView;
         return this;
     }
@@ -83,6 +85,11 @@ public final class RecyclerViewUtils {
         } else
             errorMustBeCallOfFirst();
         return this;
+    }
+
+    public static int calculateNoOfColumns(Context context) {
+        DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
+        return (int) (displayMetrics.widthPixels / displayMetrics.density / 180);
     }
 
     private void errorMustBeCallOfFirst() {

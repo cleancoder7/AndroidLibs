@@ -1,1 +1,1 @@
-include ':imstudio-app', ':imstudio-core'
+include ':imstudio-app', ':imstudio-core', ':imstudio-core-imageloader'

@@ -10,6 +10,7 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/imstudio-app" />
             <option value="$PROJECT_DIR$/imstudio-core" />
+            <option value="$PROJECT_DIR$/imstudio-core-imageloader" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
