@@ -5,8 +5,8 @@
     <color name="colorTextColorPrimary">#212121</color>
     <color name="colorTextColorSecondary">#9b9b9b</color>
     <color name="colorWindowBackground">#f2f2f2</color>
-    <color name="colorWindowBackgroundLight">#f7f7f7</color>
     <color name="ims_primary_color">#FFFFC107</color>
     <color name="ims_secondary_color">#FFFF5722</color>
     <color name="ims_image_tint">#00000000</color>
+    <color name="ims_grey_color">#f9f9f9</color>
 </resources>

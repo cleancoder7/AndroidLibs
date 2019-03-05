@@ -40,7 +40,7 @@ public class Spinner extends android.support.v7.widget.AppCompatTextView {
     private boolean hideArrow, nothingSelected;
     private int selectedIndex;
     private Drawable arrowDrawable;
-    private int arrowColor, numberOfItems;
+    private int arrowColor, numberOfItems, textColor = -1;
 
     public Spinner(Context context) {
         super(context);
@@ -91,6 +91,7 @@ public class Spinner extends android.support.v7.widget.AppCompatTextView {
         try {
             installFonts(context, attrs);
             arrowColor = ta.getColor(R.styleable.Spinner_ims_arrowTint, Color.WHITE);
+            textColor = ta.getColor(R.styleable.Spinner_ims_textColor, Color.DKGRAY);
             // Background
             setBackgroundResource(ta.getResourceId(R.styleable.Spinner_ims_backgroundDrawable, R.drawable.ms_background_default));
             hideArrow = ta.getBoolean(R.styleable.Spinner_ims_arrowHidden, false);
@@ -272,7 +273,15 @@ public class Spinner extends android.support.v7.widget.AppCompatTextView {
     public <T> void setItems(@NonNull List<T> items) {
         numberOfItems = items.size();
         adapter = new SpinnerAdapter<>(getContext(), items);
+        setListItemTextColor(textColor);
         setAdapterInternal(adapter);
+    }
+
+    public void setListItemTextColor(int textColor) {
+        if (textColor == -1)
+            return;
+        if (adapter != null)
+            adapter.setTextColor(textColor);
     }
 
     /**
@@ -283,6 +292,7 @@ public class Spinner extends android.support.v7.widget.AppCompatTextView {
     public void setAdapter(@NonNull ListAdapter adapter) {
         this.adapter = new SpinnerAdapterWrapper(getContext(), adapter);
         setAdapterInternal(this.adapter);
+        setListItemTextColor(textColor);
     }
 
     private void setAdapterInternal(@NonNull SpinnerBaseAdapter adapter) {
