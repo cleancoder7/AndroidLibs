@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white"
+    android:orientation="vertical">
+
+    <me.imstudio.core.ui.widget.TextView
+        android:id="@id/text_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="@dimen/margin"
+        android:layout_marginRight="@dimen/margin"
+        android:paddingLeft="@dimen/margin_medium"
+        android:paddingTop="@dimen/margin_medium"
+        android:paddingRight="@dimen/margin_medium"
+        android:paddingBottom="@dimen/margin"
+        android:textColor="@color/colorTextColorPrimary"
+        android:textSize="@dimen/size_text_extra_medium"
+        android:textStyle="bold" />
+
+    <me.imstudio.core.ui.widget.TextView
+        android:id="@id/text_sub_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="@dimen/margin"
+        android:layout_marginRight="@dimen/margin"
+        android:paddingLeft="@dimen/margin_medium"
+        android:paddingRight="@dimen/margin_medium"
+        android:paddingBottom="@dimen/margin_medium"
+        android:textColor="@color/colorTextColorPrimary"
+        android:textSize="@dimen/size_text_extra_medium" />
+
+    <include layout="@layout/view_separate_line" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|end"
+        android:background="@color/colorWindowBackground"
+        android:orientation="horizontal"
+        android:padding="@dimen/margin_small">
+
+        <me.imstudio.core.ui.widget.TextView
+            android:id="@id/button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:padding="@dimen/margin"
+            android:text="@android:string/ok"
+            android:textStyle="bold" />
+
+        <me.imstudio.core.ui.widget.TextView
+            android:id="@id/button_cancel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:paddingTop="@dimen/margin"
+            android:paddingBottom="@dimen/margin"
+            android:text="@android:string/cancel"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+</LinearLayout>
