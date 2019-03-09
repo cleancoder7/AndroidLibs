@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/all_style_dialog"
+    android:background="@android:color/white"
     android:orientation="vertical">
 
     <me.imstudio.core.ui.widget.TextView
@@ -41,7 +41,7 @@
         android:layout_gravity="center|end"
         android:background="@color/colorWindowBackground"
         android:orientation="horizontal"
-        android:padding="@dimen/margin_small">
+        android:padding="@dimen/margin_extra_small">
 
         <me.imstudio.core.ui.widget.TextView
             android:id="@id/button_cancel"
@@ -49,6 +49,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1"
+            android:background="?selectableItemBackground"
             android:clickable="true"
             android:focusable="true"
             android:gravity="center"
@@ -62,12 +63,12 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1"
+            android:background="?selectableItemBackground"
             android:clickable="true"
             android:focusable="true"
             android:gravity="center"
             android:padding="@dimen/margin"
-            android:text="@android:string/ok"
-            android:textStyle="bold" />
+            android:text="@android:string/ok" />
 
     </LinearLayout>
 

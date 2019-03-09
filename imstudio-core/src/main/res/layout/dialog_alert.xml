@@ -41,20 +41,7 @@
         android:layout_gravity="center|end"
         android:background="@color/colorWindowBackground"
         android:orientation="horizontal"
-        android:padding="@dimen/margin_small">
-
-        <me.imstudio.core.ui.widget.TextView
-            android:id="@id/button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:clickable="true"
-            android:focusable="true"
-            android:gravity="center"
-            android:padding="@dimen/margin"
-            android:text="@android:string/ok"
-            android:textStyle="bold" />
+        android:padding="@dimen/margin_extra_small">
 
         <me.imstudio.core.ui.widget.TextView
             android:id="@id/button_cancel"
@@ -62,13 +49,26 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1"
+            android:background="?selectableItemBackground"
             android:clickable="true"
             android:focusable="true"
             android:gravity="center"
             android:paddingTop="@dimen/margin"
             android:paddingBottom="@dimen/margin"
-            android:text="@android:string/cancel"
-            android:textStyle="bold" />
+            android:text="@android:string/cancel" />
+
+        <me.imstudio.core.ui.widget.TextView
+            android:id="@id/button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="?selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:padding="@dimen/margin"
+            android:text="@android:string/ok" />
 
     </LinearLayout>
 
