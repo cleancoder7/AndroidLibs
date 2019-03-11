@@ -2,13 +2,16 @@ package me.imstudio.core.ui.activity;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.CallSuper;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
-public abstract class IMSActivity extends AppCompatActivity implements ActivityInterface {
+import me.imstudio.core.ui.LayoutResId;
 
-    private String TAG = IMSActivity.class.getSimpleName();
+public abstract class IMSAnnotatedActivity extends AppCompatActivity implements ActivityCommonInterface {
+
+    private String TAG = IMSAnnotatedActivity.class.getSimpleName();
     protected static final String KEY_CLASS = "KEY_CLASS";
     protected Class className;
 
@@ -22,13 +25,19 @@ public abstract class IMSActivity extends AppCompatActivity implements ActivityI
     }
 
     @Override
+    @CallSuper
     protected void onCreate(Bundle savedInstanceState) {
         TAG = this.getClass().getSimpleName();
         super.onCreate(savedInstanceState);
-        setContentView(getLayout());
-        onSyncViews(savedInstanceState);
-        onSyncEvents();
-        onSyncData();
+        if (getClass().getAnnotation(LayoutResId.class) != null) {
+            int layoutResId = getClass().getAnnotation(LayoutResId.class).layout();
+            if (layoutResId != LayoutResId.LAYOUT_NOT_DEFINED) {
+                setContentView(layoutResId);
+                onSyncViews(savedInstanceState);
+                onSyncEvents();
+                onSyncData();
+            }
+        }
     }
 
     @Override

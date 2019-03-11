@@ -9,9 +9,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 
-public abstract class IMSFragment extends Fragment implements FragmentInterface {
+import me.imstudio.core.ui.LayoutResId;
 
-    private String TAG = IMSFragment.class.getSimpleName();
+public abstract class IMSAnnotatedFragment extends Fragment
+
+        implements FragmentCommonInterface {
+
+    private String TAG = IMSAnnotatedFragment.class.getSimpleName();
     protected int MAX_WAITING_TIME = 300;   // Mills
 
     protected View rootView;
@@ -20,10 +24,15 @@ public abstract class IMSFragment extends Fragment implements FragmentInterface 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         TAG = this.getClass().getSimpleName();
-        rootView = inflater.inflate(getLayout(), container, false);
-        onSyncViews(rootView);
-        onSyncEvents();
-        onSyncData();
+        if (getClass().getAnnotation(LayoutResId.class) != null) {
+            int layoutResId = getClass().getAnnotation(LayoutResId.class).layout();
+            if (layoutResId != LayoutResId.LAYOUT_NOT_DEFINED) {
+                rootView = inflater.inflate(layoutResId, container, false);
+                onSyncViews(rootView);
+                onSyncEvents();
+                onSyncData();
+            }
+        }
         return rootView;
     }
 
