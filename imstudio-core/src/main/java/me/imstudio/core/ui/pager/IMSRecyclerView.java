@@ -12,7 +12,8 @@ import me.imstudio.core.ui.pager.listener.OnItemClickListener;
 import me.imstudio.core.utils.Utils;
 
 public abstract class IMSRecyclerView<T extends Selectable>
-        extends RecyclerView.Adapter<IMSRecyclerView.ViewHolder> implements OnItemClickListener {
+        extends RecyclerView.Adapter<IMSRecyclerView.ViewHolder>
+        implements OnItemClickListener {
 
     protected List<T> mData;
     protected LayoutInflater inflater = null;
@@ -98,28 +99,15 @@ public abstract class IMSRecyclerView<T extends Selectable>
         notifyDataSetChanged();
     }
 
-    // add new list of items
+    // Append new list of items
     public void addAll(List<T> data) {
         if (data != null && !data.isEmpty()) {
             if (this.mData == null)
                 this.mData = new ArrayList<>();
-            this.mData.addAll(data);
-            notifyDataSetChanged();
-        }
-    }
-
-    public void addAll(List<T> data, boolean isDistinct) {
-        if (data != null && !data.isEmpty()) {
-            if (this.mData == null)
-                this.mData = new ArrayList<>();
-            if (isDistinct) {   // Check if distinct
-                for (T item : data) {
-                    // Check if item existed
-                    if (!this.mData.contains(item))
-                        this.mData.add(item);
-                }
-            } else
-                this.mData.addAll(data);
+            for (T item : data) {
+                if (!this.mData.contains(item))
+                    this.mData.add(item);
+            }
             notifyDataSetChanged();
         }
     }
@@ -147,9 +135,9 @@ public abstract class IMSRecyclerView<T extends Selectable>
             this.onItemClickListener.onItemClicked(view, position, isSelected);
     }
 
-    public class ViewHolder<t extends Selectable> extends RecyclerView.ViewHolder {
+    protected class ViewHolder<D extends Selectable> extends RecyclerView.ViewHolder {
 
-        private t item;
+        private D item;
         private OnItemClickListener onItemClick;
 
         public ViewHolder(View itemView) {
@@ -162,11 +150,11 @@ public abstract class IMSRecyclerView<T extends Selectable>
             this.item.setSelected(isSelected);
         }
 
-        protected t getItem() {
+        protected D getItem() {
             return item;
         }
 
-        protected void setItem(t item) {
+        protected void setItem(D item) {
             this.item = item;
         }
 

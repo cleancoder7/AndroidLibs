@@ -16,7 +16,7 @@ public final class AlertDialog extends Dialog {
 
     private Activity mOwnerActivity;
     private View.OnClickListener onNegativeClicked, onPositiveClicked;
-    private TextView textTitle, textMessage;
+    private TextView textTitle, textMessage, textPositive, textNegative;
 
     public AlertDialog(Context context) {
         super(context, R.style.IMSTheme_Dialog);
@@ -49,8 +49,10 @@ public final class AlertDialog extends Dialog {
 
         textTitle = findViewById(R.id.text_title);
         textMessage = findViewById(R.id.text_sub_title);
+        textPositive = findViewById(R.id.button);
+        textNegative = findViewById(R.id.button_cancel);
 
-        findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
+        textPositive.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 dismiss();
@@ -58,7 +60,7 @@ public final class AlertDialog extends Dialog {
                     onPositiveClicked.onClick(v);
             }
         });
-        findViewById(R.id.button_cancel).setOnClickListener(new View.OnClickListener() {
+        textNegative.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 dismiss();
@@ -66,6 +68,14 @@ public final class AlertDialog extends Dialog {
                     onNegativeClicked.onClick(v);
             }
         });
+    }
+
+    public void show(String title, String message) {
+        show(title, message, null, null);
+    }
+
+    public void show(String title, String message, View.OnClickListener onPositiveClicked) {
+        show(title, message, onPositiveClicked, null);
     }
 
     public void show(String title, String message, View.OnClickListener onPositiveClicked, View.OnClickListener onNegativeClicked) {
@@ -76,7 +86,15 @@ public final class AlertDialog extends Dialog {
         this.onNegativeClicked = onNegativeClicked;
     }
 
-    public void show(String title, String message, View.OnClickListener onPositiveClicked) {
-        show(title, message, onPositiveClicked, null);
+    public void show(String title, String message,
+                     String positiveTitle, String negativeTitle,
+                     View.OnClickListener onPositiveClicked, View.OnClickListener onNegativeClicked) {
+        super.show();
+        this.textTitle.setText(title);
+        this.textMessage.setText(message);
+        this.textNegative.setText(negativeTitle);
+        this.textPositive.setText(positiveTitle);
+        this.onPositiveClicked = onPositiveClicked;
+        this.onNegativeClicked = onNegativeClicked;
     }
 }

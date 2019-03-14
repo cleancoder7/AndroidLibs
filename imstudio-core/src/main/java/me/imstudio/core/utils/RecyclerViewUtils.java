@@ -6,6 +6,10 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
+import android.view.View;
+
+import me.imstudio.core.ui.pager.listener.OnItemClickListener;
+import me.imstudio.core.ui.pager.listener.RecyclerItemClickListener;
 
 /*
     RecyclerViewUtils: Helper class to build up with recycler view faster
@@ -66,6 +70,14 @@ public final class RecyclerViewUtils {
     public RecyclerViewUtils addItemDecoration(RecyclerView.ItemDecoration decor) {
         if (this.recyclerView != null)
             recyclerView.addItemDecoration(decor);
+        else
+            errorMustBeCallOfFirst();
+        return this;
+    }
+
+    public RecyclerViewUtils addOnItemClickListener(Context context, OnItemClickListener onItemClickListener) {
+        if (this.recyclerView != null)
+            recyclerView.addOnItemTouchListener(new RecyclerItemClickListener(context, onItemClickListener));
         else
             errorMustBeCallOfFirst();
         return this;
