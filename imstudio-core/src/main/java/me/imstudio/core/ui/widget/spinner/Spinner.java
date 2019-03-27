@@ -295,6 +295,10 @@ public class Spinner extends android.support.v7.widget.AppCompatTextView {
         setListItemTextColor(textColor);
     }
 
+    public SpinnerBaseAdapter getAdapter() {
+        return adapter;
+    }
+
     private void setAdapterInternal(@NonNull SpinnerBaseAdapter adapter) {
         listView.setAdapter(adapter);
         if (selectedIndex >= numberOfItems) {

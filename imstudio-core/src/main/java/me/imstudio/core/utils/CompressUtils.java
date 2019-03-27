@@ -3,18 +3,17 @@ package me.imstudio.core.utils;
 import android.content.Context;
 import android.content.res.AssetManager;
 import android.support.annotation.NonNull;
+
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.util.ArrayList;
 import java.util.Enumeration;
-import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 import java.util.zip.ZipInputStream;
 
-public final class CompressUtils {
+public class CompressUtils {
 
     public static String getDefaultFolder(Context context) {
         return String.valueOf(context.getFilesDir().getAbsolutePath());
@@ -64,9 +63,8 @@ public final class CompressUtils {
             return true;
         }
 
-        public static List<String> unpackFromAsset(@NonNull Context context, String fileName) {
+        public static void unpackFromAsset(@NonNull Context context, String fileName) {
 
-            List<String> fonts = new ArrayList<>();
             AssetManager manager = context.getAssets();
             final String OUTPUT_FOLDER = String.valueOf(context.getFilesDir().getAbsolutePath());
             File folder = new File(OUTPUT_FOLDER);
@@ -94,7 +92,6 @@ public final class CompressUtils {
                     }
                     fos.close();
                     ze = zis.getNextEntry();
-                    fonts.add(OUTPUT_FOLDER + File.separator + fileEntry);
                 }
                 bis.close();
                 zis.closeEntry();
@@ -102,8 +99,8 @@ public final class CompressUtils {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            return fonts;
         }
+
     }
 
 }
