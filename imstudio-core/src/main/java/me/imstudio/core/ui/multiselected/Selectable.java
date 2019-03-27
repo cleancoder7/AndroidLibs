@@ -1,4 +1,4 @@
-package me.imstudio.core.ui.pager;
+package me.imstudio.core.ui.multiselected;
 
 public abstract class Selectable {
 

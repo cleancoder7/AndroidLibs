@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import me.imstudio.core.ui.LayoutResId;
+
 public abstract class RecyclerViewAdapter<D, V extends ViewHolderWrapper<D>> extends
         RecyclerView.Adapter<V> {
 
@@ -27,13 +29,12 @@ public abstract class RecyclerViewAdapter<D, V extends ViewHolderWrapper<D>> ext
             inflater = LayoutInflater.from(context);
     }
 
-    protected int getLayout() {
-        return -1;
-    }
+    protected abstract int getLayout();
 
     protected View onCreateRowView(@NonNull ViewGroup viewGroup, int viewType) {
         try {
-            return inflater.inflate(getLayout(), viewGroup, false);
+            if (getLayout() != LayoutResId.LAYOUT_NOT_DEFINED)
+                return inflater.inflate(getLayout(), viewGroup, false);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -49,7 +50,7 @@ public abstract class RecyclerViewAdapter<D, V extends ViewHolderWrapper<D>> ext
 
     @Override
     public int getItemCount() {
-        return data.size();
+        return data != null ? data.size() : 0;
     }
 
     public void add(D item) {
