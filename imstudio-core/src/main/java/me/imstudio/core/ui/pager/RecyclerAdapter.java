@@ -13,17 +13,17 @@ import java.util.List;
 
 import me.imstudio.core.ui.LayoutResId;
 
-public abstract class RecyclerViewAdapter<D, V extends ViewHolderWrapper<D>> extends
+public abstract class RecyclerAdapter<D, V extends ViewHolderWrapper<D>> extends
         RecyclerView.Adapter<V> {
 
-    protected List<D> data;
+    protected List<D> mData;
     protected LayoutInflater inflater = null;
 
-    public RecyclerViewAdapter() {
-        data = new ArrayList<>();
+    public RecyclerAdapter() {
+        mData = new ArrayList<>();
     }
 
-    public RecyclerViewAdapter(Context context) {
+    public RecyclerAdapter(Context context) {
         this();
         if (inflater == null)
             inflater = LayoutInflater.from(context);
@@ -43,49 +43,55 @@ public abstract class RecyclerViewAdapter<D, V extends ViewHolderWrapper<D>> ext
 
     @Override
     public void onBindViewHolder(@NonNull V viewHolder, int position) {
-        final D item = data.get(position);
+        final D item = mData.get(position);
         if (item != null)
             viewHolder.bind(item);
     }
 
     @Override
     public int getItemCount() {
-        return data != null ? data.size() : 0;
+        return mData != null ? mData.size() : 0;
     }
 
     public void add(D item) {
-        data.add(item);
-        notifyDataSetChanged();
+        if (!mData.contains(item)) {
+            mData.add(item);
+            notifyDataSetChanged();
+        }
+
     }
 
     public List<D> getData() {
-        return data;
+        return mData;
     }
 
     public D get(int position) {
         try {
-            return data.get(position);
+            return mData.get(position);
         } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
     }
 
-    public void addAll(Collection<D> collection) {
-        data.addAll(collection);
+    public void addAll(Collection<D> data) {
+        for (D item : data) {
+            if (!mData.contains(item))
+                mData.add(item);
+        }
         notifyDataSetChanged();
     }
 
     public void replaceAll(Collection<D> collection) {
-        if (data != null) {
-            data.clear();
-            data.addAll(collection);
+        if (mData != null) {
+            mData.clear();
+            mData.addAll(collection);
             notifyDataSetChanged();
         }
     }
 
-    public void clear() {
-        data.clear();
+    public void clearAll() {
+        mData.clear();
         notifyDataSetChanged();
     }
 }

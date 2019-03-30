@@ -1,14 +1,16 @@
-package me.imstudio.core.ui.multiselected;
+package me.imstudio.core.ui.pager;
 
 public abstract class Selectable {
-
     private transient boolean isSelected;
 
+    public Selectable() {
+    }
+
     public void setSelected(boolean selected) {
-        isSelected = selected;
+        this.isSelected = selected;
     }
 
     public boolean isSelected() {
-        return isSelected;
+        return this.isSelected;
     }
 }

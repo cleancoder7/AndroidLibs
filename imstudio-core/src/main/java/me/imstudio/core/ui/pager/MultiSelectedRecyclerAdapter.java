@@ -1,4 +1,4 @@
-package me.imstudio.core.ui.multiselected;
+package me.imstudio.core.ui.pager;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -15,9 +15,10 @@ import me.imstudio.core.ui.pager.listener.OnItemClickListener;
 import me.imstudio.core.utils.Utils;
 
 /**
- * MultiSelectedRecyclerViewAdapter: used for Multi-Selected UI
+ * MultiSelectedRecyclerAdapter: used for Multi-Selected UI
  */
-public abstract class MultiSelectedRecyclerViewAdapter<T extends Selectable, V extends MultiSelectedRecyclerViewAdapter.MultiSelectedHolderWrapper>
+public abstract class MultiSelectedRecyclerAdapter<T extends Selectable,
+        V extends MultiSelectedRecyclerAdapter.MultiSelectedHolderWrapper>
         extends RecyclerView.Adapter<V> implements OnItemClickListener {
 
     protected List<T> mData;                                // Data set
@@ -26,17 +27,17 @@ public abstract class MultiSelectedRecyclerViewAdapter<T extends Selectable, V e
     protected int mCurrentSelected = 0;                     // Number of current item was been selected
     protected OnItemClickListener onItemClickListener;      // Callback event when row was change
 
-    protected MultiSelectedRecyclerViewAdapter() {
+    protected MultiSelectedRecyclerAdapter() {
         this.mData = new ArrayList<>();
     }
 
-    protected MultiSelectedRecyclerViewAdapter(Context context) {
+    protected MultiSelectedRecyclerAdapter(Context context) {
         this();
         if (inflater == null)
             inflater = LayoutInflater.from(context);
     }
 
-    public MultiSelectedRecyclerViewAdapter(Context context, OnItemClickListener callBack) {
+    public MultiSelectedRecyclerAdapter(Context context, OnItemClickListener callBack) {
         this(context);
         this.onItemClickListener = callBack;
     }
@@ -166,7 +167,7 @@ public abstract class MultiSelectedRecyclerViewAdapter<T extends Selectable, V e
             this.onItemClickListener.onItemClicked(view, position, isSelected);
     }
 
-    protected abstract class MultiSelectedHolderWrapper extends RecyclerView.ViewHolder {
+    public class MultiSelectedHolderWrapper extends RecyclerView.ViewHolder {
 
         private T item;                                     // Current item
         private OnItemClickListener onItemClickListener;    // Callback event whenever item was change status
@@ -195,17 +196,23 @@ public abstract class MultiSelectedRecyclerViewAdapter<T extends Selectable, V e
         /*
          *  Populate data on current view of row
          * */
-        protected abstract void bind(T item);
+        protected void bind(T item) {
+
+        }
 
         /*
          * Set on click for view need to be selected
          * */
-        protected abstract void setOnClickListener();
+        protected void setOnClickListener() {
+
+        }
 
         /*
          * How UI change when item was selected
          * */
-        protected abstract void setUISelected(boolean uiSelected);
+        protected void setUISelected(boolean uiSelected) {
+
+        }
 
 
         /*
