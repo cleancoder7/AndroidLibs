@@ -54,6 +54,8 @@ public abstract class RecyclerAdapter<D, V extends ViewHolderWrapper<D>> extends
     }
 
     public void add(D item) {
+        if (item == null)
+            return;
         if (!mData.contains(item)) {
             mData.add(item);
             notifyDataSetChanged();
@@ -75,6 +77,8 @@ public abstract class RecyclerAdapter<D, V extends ViewHolderWrapper<D>> extends
     }
 
     public void addAll(Collection<D> data) {
+        if (data == null || data.isEmpty())
+            return;
         for (D item : data) {
             if (!mData.contains(item))
                 mData.add(item);
@@ -82,10 +86,12 @@ public abstract class RecyclerAdapter<D, V extends ViewHolderWrapper<D>> extends
         notifyDataSetChanged();
     }
 
-    public void replaceAll(Collection<D> collection) {
+    public void replaceAll(Collection<D> data) {
+        if (data == null || data.isEmpty())
+            return;
         if (mData != null) {
             mData.clear();
-            mData.addAll(collection);
+            mData.addAll(data);
             notifyDataSetChanged();
         }
     }

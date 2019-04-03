@@ -1,11 +1,13 @@
 package me.imstudio.core.ui.pager.listener;
 
+import android.support.annotation.NonNull;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 
 public abstract class EndlessRecyclerViewScrollListener extends RecyclerView.OnScrollListener {
+
     // The minimum amount of items to have below your current scroll position
     // before loading more.
     private int visibleThreshold = 5;
@@ -17,10 +19,19 @@ public abstract class EndlessRecyclerViewScrollListener extends RecyclerView.OnS
     private boolean loading = true;
     // Sets the starting page index
     private int startingPageIndex = 0;
-    RecyclerView.LayoutManager mLayoutManager;
+
+    // Max Item Can Be Load
+    private int maxItemCanBeLoad = 100;
+
+    private RecyclerView.LayoutManager mLayoutManager;
 
     public EndlessRecyclerViewScrollListener(LinearLayoutManager layoutManager) {
         this.mLayoutManager = layoutManager;
+    }
+
+    public EndlessRecyclerViewScrollListener(LinearLayoutManager layoutManager, int maxItemCanBeLoad) {
+        this(layoutManager);
+        this.maxItemCanBeLoad = maxItemCanBeLoad;
     }
 
     public EndlessRecyclerViewScrollListener(GridLayoutManager layoutManager) {
@@ -49,7 +60,7 @@ public abstract class EndlessRecyclerViewScrollListener extends RecyclerView.OnS
     // We are given a few useful parameters to help us work out if we need to load some more data,
     // but first we check if we are waiting for the previous load to finish.
     @Override
-    public void onScrolled(RecyclerView view, int dx, int dy) {
+    public void onScrolled(@NonNull RecyclerView view, int dx, int dy) {
         int lastVisibleItemPosition = 0;
         int totalItemCount = mLayoutManager.getItemCount();
         if (mLayoutManager instanceof StaggeredGridLayoutManager) {
@@ -83,7 +94,7 @@ public abstract class EndlessRecyclerViewScrollListener extends RecyclerView.OnS
         // threshold should reflect how many total columns there are too
         if (!loading && (lastVisibleItemPosition + visibleThreshold) > totalItemCount) {
             currentPage++;
-            if (currentPage * totalItemCount <= 100) {
+            if (currentPage * totalItemCount <= maxItemCanBeLoad) {
                 onLoadMore(currentPage, totalItemCount > 10 ? 10 : totalItemCount, view);
                 loading = true;
             }

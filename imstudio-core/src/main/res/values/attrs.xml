@@ -31,9 +31,6 @@
         <attr name="ims_imageTintOn" format="reference" />
         <attr name="ims_imageTintOff" format="reference" />
     </declare-styleable>
-    <declare-styleable name="TextView">
-        <attr name="ims_isStroke" format="boolean" />
-    </declare-styleable>
     <declare-styleable name="ProgressBar">
         <attr name="ims_progressTint" format="color" />
     </declare-styleable>

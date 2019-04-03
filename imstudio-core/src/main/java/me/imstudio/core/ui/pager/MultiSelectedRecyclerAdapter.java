@@ -117,7 +117,7 @@ public abstract class MultiSelectedRecyclerAdapter<T extends Selectable,
      * Replace all of currents data by news list
      */
     public void replaceAll(List<T> data) {
-        if (data == null)
+        if (data == null || data.isEmpty())
             return;
         if (mData == null)
             mData = new ArrayList<>();
