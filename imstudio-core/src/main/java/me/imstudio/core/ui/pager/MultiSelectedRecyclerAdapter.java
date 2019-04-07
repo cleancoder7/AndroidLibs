@@ -127,6 +127,19 @@ public abstract class MultiSelectedRecyclerAdapter<T extends Selectable,
     }
 
     /**
+     * Append new item to items
+     */
+    public void add(T item) {
+        if (item != null) {
+            if (this.mData == null)
+                this.mData = new ArrayList<>();
+            if (!this.mData.contains(item))
+                this.mData.add(item);
+            notifyDataSetChanged();
+        }
+    }
+
+    /**
      * Append new list of items
      */
     public void addAll(List<T> data) {

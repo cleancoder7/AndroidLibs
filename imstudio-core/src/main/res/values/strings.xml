@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="str_not_net_message">
-        You are not connected to the internet. Make sure Wi-Fi/3G is on,\nAirplane Mode is off and try again.
+        You are not connected to the internet. Make sure Wi-Fi/3G is on, Airplane Mode is off and try again.
     </string>
     <string name="str_version">Version</string>
+    <string name="common_there_is_no_data">There is no data</string>
 </resources>

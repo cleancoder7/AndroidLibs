@@ -4,4 +4,5 @@
         Kết nối không ổn định. Vui lòng kiểm tra Wi-Fi/3G.
     </string>
     <string name="str_version">Phiên bản</string>
+    <string name="common_there_is_no_data">Không có dữ liệu</string>
 </resources>
