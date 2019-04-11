@@ -15,17 +15,35 @@ public class SpinnerAdapter<T> extends SpinnerBaseAdapter {
 
     @Override
     public int getCount() {
-        return items.size() - 1;
+        try {
+            return items != null ? items.size() - 1 : 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
     }
 
     @Override
     public T getItem(int position) {
-        return (position >= getSelectedIndex()) ? items.get(position + 1) : items.get(position);
+        try {
+            return (position >= getSelectedIndex()) ? items.get(position + 1) : items.get(position);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     @Override
     public T get(int position) {
-        return items.get(position);
+        try {
+            if (position < 0 || items == null ||
+                    items.isEmpty() || position >= items.size())
+                return null;
+            return items.get(position);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
 }
