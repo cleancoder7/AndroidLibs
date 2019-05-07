@@ -58,28 +58,32 @@ public class Spinner extends android.support.v7.widget.AppCompatTextView {
     }
 
     private void installFonts(Context context, AttributeSet attrs) {
-        int style = attrs.getAttributeIntValue("http://schemas.android.com/apk/res/android", "textStyle", Typeface.NORMAL);
-        if (style == Typeface.BOLD) {
-            if (FileUtils.isExist(CompressUtils.getDefaultFolderPath(context) +
-                    getResources().getString(R.string.str_font_bold))) {
-                setTypeface(Typeface.createFromFile(
-                        CompressUtils.getDefaultFolderPath(context) +
-                                getResources().getString(R.string.str_font_bold)));
+        try {
+            int style = attrs.getAttributeIntValue("http://schemas.android.com/apk/res/android", "textStyle", Typeface.NORMAL);
+            if (style == Typeface.BOLD) {
+                if (FileUtils.isExist(CompressUtils.getDefaultFolderPath(context) +
+                        getResources().getString(R.string.str_font_bold))) {
+                    setTypeface(Typeface.createFromFile(
+                            CompressUtils.getDefaultFolderPath(context) +
+                                    getResources().getString(R.string.str_font_bold)));
+                }
+            } else if (style == Typeface.ITALIC) {
+                if (FileUtils.isExist(CompressUtils.getDefaultFolderPath(context) +
+                        getResources().getString(R.string.str_font_italic))) {
+                    setTypeface(Typeface.createFromFile(
+                            CompressUtils.getDefaultFolderPath(context) +
+                                    getResources().getString(R.string.str_font_italic)));
+                }
+            } else {
+                if (FileUtils.isExist(CompressUtils.getDefaultFolderPath(context) +
+                        getResources().getString(R.string.str_font_regular))) {
+                    setTypeface(Typeface.createFromFile(
+                            CompressUtils.getDefaultFolderPath(context) +
+                                    getResources().getString(R.string.str_font_regular)));
+                }
             }
-        } else if (style == Typeface.ITALIC) {
-            if (FileUtils.isExist(CompressUtils.getDefaultFolderPath(context) +
-                    getResources().getString(R.string.str_font_italic))) {
-                setTypeface(Typeface.createFromFile(
-                        CompressUtils.getDefaultFolderPath(context) +
-                                getResources().getString(R.string.str_font_italic)));
-            }
-        } else {
-            if (FileUtils.isExist(CompressUtils.getDefaultFolderPath(context) +
-                    getResources().getString(R.string.str_font_regular))) {
-                setTypeface(Typeface.createFromFile(
-                        CompressUtils.getDefaultFolderPath(context) +
-                                getResources().getString(R.string.str_font_regular)));
-            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
@@ -186,38 +190,46 @@ public class Spinner extends android.support.v7.widget.AppCompatTextView {
     @Override
     public Parcelable onSaveInstanceState() {
         Bundle bundle = new Bundle();
-        bundle.putParcelable("state", super.onSaveInstanceState());
-        bundle.putInt("selected_index", selectedIndex);
-        if (popupWindow != null) {
-            bundle.putBoolean("is_popup_showing", popupWindow.isShowing());
-            collapse();
-        } else {
-            bundle.putBoolean("is_popup_showing", false);
+        try {
+            bundle.putParcelable("state", super.onSaveInstanceState());
+            bundle.putInt("selected_index", selectedIndex);
+            if (popupWindow != null) {
+                bundle.putBoolean("is_popup_showing", popupWindow.isShowing());
+                collapse();
+            } else {
+                bundle.putBoolean("is_popup_showing", false);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         return bundle;
     }
 
     @Override
     public void onRestoreInstanceState(Parcelable savedState) {
-        if (savedState instanceof Bundle) {
-            Bundle bundle = (Bundle) savedState;
-            selectedIndex = bundle.getInt("selected_index");
-            if (adapter != null) {
-                setText(adapter.get(selectedIndex).toString());
-                adapter.notifyItemSelected(selectedIndex);
-            }
-            if (bundle.getBoolean("is_popup_showing")) {
-                if (popupWindow != null) {
-                    // Post the show request into the looper to avoid bad token exception
-                    post(new Runnable() {
-                        @Override
-                        public void run() {
-                            expand();
-                        }
-                    });
+        try {
+            if (savedState instanceof Bundle) {
+                Bundle bundle = (Bundle) savedState;
+                selectedIndex = bundle.getInt("selected_index");
+                if (adapter != null) {
+                    setText(adapter.get(selectedIndex).toString());
+                    adapter.notifyItemSelected(selectedIndex);
                 }
+                if (bundle.getBoolean("is_popup_showing")) {
+                    if (popupWindow != null) {
+                        // Post the show request into the looper to avoid bad token exception
+                        post(new Runnable() {
+                            @Override
+                            public void run() {
+                                expand();
+                            }
+                        });
+                    }
+                }
+                savedState = bundle.getParcelable("state");
             }
-            savedState = bundle.getParcelable("state");
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         super.onRestoreInstanceState(savedState);
     }

@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="str_not_net_message">
-        You are not connected to the internet. Make sure Wi-Fi/3G is on, Airplane Mode is off and try again.
-    </string>
-    <string name="str_version">Version</string>
-    <string name="common_there_is_no_data">There is no data</string>
+    <string name="common_error_connect">Sorry, there is a problem with the connection.</string>
+    <string name="common_error_unknown">Sorry, there is a problem with your app.</string>
+    <string name="common_version">Version</string>
+    <string name="common_there_are_no_data">There are no data.</string>
 </resources>

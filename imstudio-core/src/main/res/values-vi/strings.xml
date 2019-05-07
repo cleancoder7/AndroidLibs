@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="str_not_net_message">
-        Kết nối không ổn định. Vui lòng kiểm tra Wi-Fi/3G.
-    </string>
-    <string name="str_version">Phiên bản</string>
-    <string name="common_there_is_no_data">Không có dữ liệu</string>
+    <string name="common_version">Phiên bản</string>
+    <string name="common_there_are_no_data">Không có dữ liệu.</string>
+    <string name="common_error_unknown">Xin lỗi, có vấn đề với ứng dụng của bạn.</string>
+    <string name="common_error_connect">Kết nối không ổn định. Vui lòng kiểm tra Wi-Fi/3G.</string>
 </resources>

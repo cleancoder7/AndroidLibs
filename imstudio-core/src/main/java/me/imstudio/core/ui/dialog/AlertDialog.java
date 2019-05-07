@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -80,8 +81,8 @@ public final class AlertDialog extends Dialog {
 
     public void show(String title, String message, View.OnClickListener onPositiveClicked, View.OnClickListener onNegativeClicked) {
         super.show();
-        this.textTitle.setText(title);
-        this.textMessage.setText(message);
+        this.setTitle(title);
+        this.setMessage(message);
         this.onPositiveClicked = onPositiveClicked;
         this.onNegativeClicked = onNegativeClicked;
     }
@@ -90,11 +91,35 @@ public final class AlertDialog extends Dialog {
                      String positiveTitle, String negativeTitle,
                      View.OnClickListener onPositiveClicked, View.OnClickListener onNegativeClicked) {
         super.show();
-        this.textTitle.setText(title);
-        this.textMessage.setText(message);
-        this.textNegative.setText(negativeTitle);
-        this.textPositive.setText(positiveTitle);
+        this.setTitle(title);
+        this.setMessage(message);
+        this.setTextPositive(positiveTitle);
+        this.setTextNegative(negativeTitle);
         this.onPositiveClicked = onPositiveClicked;
         this.onNegativeClicked = onNegativeClicked;
+    }
+
+    private void setTextPositive(String positiveTitle) {
+        if (TextUtils.isEmpty(positiveTitle))
+            positiveTitle = "";
+        this.textPositive.setText(positiveTitle);
+    }
+
+    private void setTextNegative(String negativeTitle) {
+        if (TextUtils.isEmpty(negativeTitle))
+            negativeTitle = "";
+        this.textNegative.setText(negativeTitle);
+    }
+
+    private void setTitle(String title) {
+        if (TextUtils.isEmpty(title))
+            title = "";
+        this.textTitle.setText(title);
+    }
+
+    private void setMessage(String message) {
+        if (TextUtils.isEmpty(message))
+            message = "";
+        this.textMessage.setText(message);
     }
 }

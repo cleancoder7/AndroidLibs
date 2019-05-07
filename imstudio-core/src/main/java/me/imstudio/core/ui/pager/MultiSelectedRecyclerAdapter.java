@@ -126,6 +126,10 @@ public abstract class MultiSelectedRecyclerAdapter<T extends Selectable,
         notifyDataSetChanged();
     }
 
+    public List<T> getData() {
+        return mData;
+    }
+
     /**
      * Append new item to items
      */
