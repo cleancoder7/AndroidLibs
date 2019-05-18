@@ -10,6 +10,6 @@ public abstract class ViewHolderWrapper<D> extends RecyclerView.ViewHolder {
         super(itemView);
     }
 
-    public abstract void bind(D item);
+    public abstract void bind(D item, int position);
 
 }

@@ -62,7 +62,7 @@ public abstract class MultiSelectedRecyclerAdapter<T extends Selectable,
                 viewHolder.setItem(item);
                 viewHolder.setOnItemClickedListener(this);
                 viewHolder.changeSelectedStatus(viewHolder.getItem().isSelected());
-                viewHolder.bind(item);
+                viewHolder.bind(item, position);
             }
         }
     }
@@ -117,7 +117,7 @@ public abstract class MultiSelectedRecyclerAdapter<T extends Selectable,
      * Replace all of currents data by news list
      */
     public void replaceAll(List<T> data) {
-        if (data == null || data.isEmpty())
+        if (data == null)
             return;
         if (mData == null)
             mData = new ArrayList<>();
@@ -213,7 +213,7 @@ public abstract class MultiSelectedRecyclerAdapter<T extends Selectable,
         /*
          *  Populate data on current view of row
          * */
-        protected void bind(T item) {
+        protected void bind(T item, int position) {
 
         }
 

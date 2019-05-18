@@ -6,7 +6,6 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
-import android.view.View;
 
 import me.imstudio.core.ui.pager.listener.OnItemClickListener;
 import me.imstudio.core.ui.pager.listener.RecyclerItemClickListener;

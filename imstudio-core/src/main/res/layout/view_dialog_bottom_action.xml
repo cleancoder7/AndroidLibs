@@ -3,37 +3,29 @@
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/size_icon_x5"
         android:layout_gravity="center|end"
         android:background="@color/colorWindowBackground"
-        android:orientation="horizontal"
-        android:padding="@dimen/margin_extra_small">
+        android:orientation="horizontal">
 
         <me.imstudio.core.ui.widget.TextView
             android:id="@id/button_cancel"
+            style="@style/Theme.IMS.Selectable"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:background="?selectableItemBackground"
-            android:clickable="true"
-            android:focusable="true"
             android:gravity="center"
-            android:paddingTop="@dimen/margin"
-            android:paddingBottom="@dimen/margin"
             android:text="@android:string/cancel" />
 
         <me.imstudio.core.ui.widget.TextView
             android:id="@id/button"
+            style="@style/Theme.IMS.Selectable"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:background="?selectableItemBackground"
-            android:clickable="true"
-            android:focusable="true"
             android:gravity="center"
-            android:padding="@dimen/margin"
             android:text="@android:string/ok" />
 
     </LinearLayout>

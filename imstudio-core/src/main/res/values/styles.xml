@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="IMSTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="Theme.IMS" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="android:textAllCaps">false</item>
         <item name="android:textSize">@dimen/size_text_medium</item>
-        <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
+        <item name="android:windowAnimationStyle">@style/StyleWindowAnimationTransition</item>
         <item name="android:windowBackground">@color/colorWindowBackground</item>
     </style>
 
-    <style name="WindowAnimationTransition">
+    <style name="StyleWindowAnimationTransition">
         <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
         <item name="android:windowExitAnimation">@android:anim/fade_out</item>
     </style>
 
-    <style name="IMSTheme.IconClick" parent="IMSTheme">
+    <style name="Theme.IMS.Selectable" parent="Theme.IMS">
         <item name="android:background">?attr/selectableItemBackground</item>
         <item name="android:clickable">true</item>
         <item name="android:focusable">true</item>
         <item name="android:scaleType">centerInside</item>
     </style>
 
-    <style name="IMSTheme.Button" parent="Base.Widget.AppCompat.Button">
+    <style name="Theme.IMS.Button" parent="Base.Widget.AppCompat.Button">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">@dimen/size_icon_x4</item>
         <item name="android:layout_gravity">center</item>
@@ -33,21 +33,21 @@
         <item name="android:textAllCaps">false</item>
     </style>
 
-    <style name="IMSTheme.ProgressBar" parent="Theme.AppCompat.Light">
+    <style name="Theme.IMS.ProgressBar" parent="Theme.AppCompat.Light">
         <item name="colorAccent">@android:color/white</item>
     </style>
 
-    <style name="IMSTheme.Dialog.Anim.Grow" parent="Theme.AppCompat.Light.Dialog.Alert">
+    <style name="Theme.IMS.Dialog.Anim.Grow" parent="Theme.AppCompat.Light.Dialog.Alert">
         <item name="@android:windowEnterAnimation">@anim/anim_grow_in</item>
         <item name="@android:windowExitAnimation">@anim/anim_grow_out</item>
     </style>
 
-    <style name="IMSTheme.Dialog.Anim.Fade" parent="Theme.AppCompat.Light.Dialog.Alert">
+    <style name="Theme.IMS.Dialog.Anim.Fade" parent="Theme.AppCompat.Light.Dialog.Alert">
         <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
         <item name="android:windowExitAnimation">@android:anim/fade_out</item>
     </style>
 
-    <style name="IMSTheme.Dialog.Content" parent="IMSTheme">
+    <style name="Theme.IMS.Dialog.Content" parent="Theme.IMS">
         <item name="@android:layout_width">match_parent</item>
         <item name="@android:layout_height">wrap_content</item>
         <item name="@android:layout_gravity">center</item>
@@ -64,7 +64,7 @@
         <item name="@android:paddingRight">@dimen/margin_medium</item>
     </style>
 
-    <style name="IMSTheme.MenuStyle.NonClick" parent="IMSTheme">
+    <style name="Theme.IMS.Menu.NonClick" parent="Theme.IMS">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">@dimen/size_text_medium</item>
@@ -75,21 +75,16 @@
         <item name="android:orientation">horizontal</item>
     </style>
 
-    <style name="IMSTheme.MenuStyle.Icon" parent="IMSTheme">
+    <style name="Theme.IMS.Menu.Icon" parent="Theme.IMS">
         <item name="android:layout_width">@dimen/size_icon_x4</item>
         <item name="android:layout_height">@dimen/size_icon_x4</item>
         <item name="android:layout_gravity">center</item>
         <item name="android:layout_marginRight">@dimen/margin</item>
     </style>
 
-    <style name="IMSTheme.Dialog" parent="Theme.AppCompat.Light.Dialog.Alert">
+    <style name="Theme.IMS.Dialog" parent="Theme.AppCompat.Light.Dialog.Alert">
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowBackground">@drawable/all_style_dialog</item>
-    </style>
-
-    <style name="IMSTheme.AnimDialog.Fade" parent="Theme.AppCompat.Light.Dialog.Alert">
-        <item name="@android:windowEnterAnimation">@android:anim/fade_in</item>
-        <item name="@android:windowExitAnimation">@android:anim/fade_out</item>
     </style>
 
 </resources>

@@ -3,6 +3,6 @@
     <!--Common String-->
     <string name="common_version">גרסה</string>
     <string name="common_there_are_no_data">אין נתונים</string>
-    <string name="common_error_connect">יש בעייה בהתחברות</string>
-    <string name="common_error_unknown">מצטערים, יש בעיה באפליקציה שלך</string>
+    <string name="common_error_connect">לא נמצא חיבור לאינטרנט. בדוק את החיבור שלך או נסה שוב.</string>
+    <string name="common_error_unknown">משהו השתבש</string>
 </resources>

@@ -2,6 +2,6 @@
 <resources>
     <string name="common_version">Version</string>
     <string name="common_there_are_no_data">There are no data.</string>
-    <string name="common_error_connect">Sorry, there is a problem with the connection.</string>
-    <string name="common_error_unknown">Sorry, there is a problem with your app.</string>
+    <string name="common_error_connect">No internet connection found. Check your connection or try again.</string>
+    <string name="common_error_unknown">Something has gone wrong.</string>
 </resources>

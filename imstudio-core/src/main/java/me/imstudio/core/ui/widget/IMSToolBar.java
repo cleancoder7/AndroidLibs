@@ -7,12 +7,12 @@ import android.support.v7.widget.AppCompatImageView;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.TypedValue;
-import android.widget.RelativeLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import me.imstudio.core.R;
 
-public class IMSToolBar extends RelativeLayout {
+public class IMSToolBar extends LinearLayout {
 
     private TextView tvTitle;
     private AppCompatImageView buttonLeft, buttonRight;
@@ -89,7 +89,7 @@ public class IMSToolBar extends RelativeLayout {
 
     private void setDrawableLeft(int icon) {
         if (icon == Integer.MIN_VALUE) {
-            buttonLeft.setVisibility(GONE);
+            buttonLeft.setVisibility(INVISIBLE);
         } else {
             buttonLeft.setVisibility(VISIBLE);
             buttonLeft.setImageResource(icon);
@@ -98,7 +98,7 @@ public class IMSToolBar extends RelativeLayout {
 
     private void setDrawableRight(int icon) {
         if (icon == Integer.MIN_VALUE) {
-            buttonRight.setVisibility(GONE);
+            buttonRight.setVisibility(INVISIBLE);
         } else {
             buttonRight.setVisibility(VISIBLE);
             buttonRight.setImageResource(icon);

@@ -45,7 +45,7 @@ public abstract class RecyclerAdapter<D, V extends ViewHolderWrapper<D>> extends
     public void onBindViewHolder(@NonNull V viewHolder, int position) {
         final D item = mData.get(position);
         if (item != null)
-            viewHolder.bind(item);
+            viewHolder.bind(item, position);
     }
 
     @Override

@@ -8,6 +8,4 @@
         android:top="10dp" />
     <solid android:color="@android:color/darker_gray" />
 
-    <size android:height="@dimen/height_image_v3_5" />
-
 </shape>

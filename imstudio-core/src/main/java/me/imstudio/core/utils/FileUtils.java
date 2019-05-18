@@ -5,7 +5,6 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.provider.MediaStore;
-import android.support.v4.util.Preconditions;
 import android.text.TextUtils;
 import android.webkit.MimeTypeMap;
 

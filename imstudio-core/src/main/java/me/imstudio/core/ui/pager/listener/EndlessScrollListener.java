@@ -6,7 +6,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 
-public abstract class EndlessRecyclerViewScrollListener extends RecyclerView.OnScrollListener {
+public abstract class EndlessScrollListener extends RecyclerView.OnScrollListener {
 
     // The minimum amount of items to have below your current scroll position
     // before loading more.
@@ -25,24 +25,29 @@ public abstract class EndlessRecyclerViewScrollListener extends RecyclerView.OnS
 
     private RecyclerView.LayoutManager mLayoutManager;
 
-    public EndlessRecyclerViewScrollListener(LinearLayoutManager layoutManager) {
+    public EndlessScrollListener(LinearLayoutManager layoutManager) {
         this.mLayoutManager = layoutManager;
     }
 
-    public EndlessRecyclerViewScrollListener(LinearLayoutManager layoutManager,
-                                             int maxItemCanBeLoad,
-                                             int visibleThreshold) {
+    public EndlessScrollListener(LinearLayoutManager layoutManager, int maxItemCanBeLoad) {
+        this(layoutManager);
+        this.maxItemCanBeLoad = maxItemCanBeLoad;
+    }
+
+    public EndlessScrollListener(LinearLayoutManager layoutManager,
+                                 int maxItemCanBeLoad,
+                                 int visibleThreshold) {
         this(layoutManager);
         this.visibleThreshold = visibleThreshold;
         this.maxItemCanBeLoad = maxItemCanBeLoad;
     }
 
-    public EndlessRecyclerViewScrollListener(GridLayoutManager layoutManager) {
+    public EndlessScrollListener(GridLayoutManager layoutManager) {
         this.mLayoutManager = layoutManager;
         visibleThreshold = visibleThreshold * layoutManager.getSpanCount();
     }
 
-    public EndlessRecyclerViewScrollListener(StaggeredGridLayoutManager layoutManager) {
+    public EndlessScrollListener(StaggeredGridLayoutManager layoutManager) {
         this.mLayoutManager = layoutManager;
         visibleThreshold = visibleThreshold * layoutManager.getSpanCount();
     }
