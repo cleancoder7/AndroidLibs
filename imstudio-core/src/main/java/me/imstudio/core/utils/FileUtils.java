@@ -13,7 +13,10 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-public final class FileUtils {
+public class FileUtils {
+
+    private FileUtils() {
+    }
 
     public static String getMimeType(File file) {
 

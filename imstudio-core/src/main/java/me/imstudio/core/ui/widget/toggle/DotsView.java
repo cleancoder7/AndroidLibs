@@ -10,6 +10,7 @@ import android.util.AttributeSet;
 import android.util.Property;
 import android.view.View;
 
+import me.imstudio.core.utils.ThemeUtils;
 import me.imstudio.core.utils.Utils;
 
 public class DotsView extends View {
@@ -64,7 +65,7 @@ public class DotsView extends View {
 
 
     private void init() {
-        maxDotSize = Utils.dp2Px(getContext(), 4);
+        maxDotSize = ThemeUtils.dp2Px(4);
         for (int i = 0; i < circlePaints.length; i++) {
             circlePaints[i] = new Paint();
             circlePaints[i].setStyle(Paint.Style.FILL);
@@ -191,8 +192,8 @@ public class DotsView extends View {
 
     public void setColors(int startColor, int endColor) {
         color1 = startColor;
-        color2 = Utils.darkenColor(color1, 1.1f);
+        color2 = ThemeUtils.darkenColor(color1, 1.1f);
         color4 = endColor;
-        color3 = Utils.darkenColor(color4, 1.1f);
+        color3 = ThemeUtils.darkenColor(color4, 1.1f);
     }
 }

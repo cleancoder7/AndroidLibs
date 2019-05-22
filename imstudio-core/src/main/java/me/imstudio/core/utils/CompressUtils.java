@@ -16,11 +16,11 @@ import java.util.zip.ZipInputStream;
 public class CompressUtils {
 
     public static String getDefaultFolder(Context context) {
-        return String.valueOf(context.getFilesDir().getAbsolutePath());
+        return context.getFilesDir().getAbsolutePath();
     }
 
     public static String getDefaultFolderPath(Context context) {
-        return String.valueOf(context.getFilesDir().getAbsolutePath()) + File.separator;
+        return context.getFilesDir().getAbsolutePath() + File.separator;
     }
 
     public static final class ZIP {

@@ -12,7 +12,7 @@ import java.util.Locale;
 
 import static android.os.Build.VERSION_CODES.JELLY_BEAN_MR1;
 
-public final class LocaleUtils {
+public class LocaleUtils {
 
     private static final String TAG = LocaleUtils.class.getSimpleName();
 
@@ -24,13 +24,13 @@ public final class LocaleUtils {
 
     private final SharedPreferences prefs;
 
-    LocaleUtils(@NonNull Context context) {
+    private LocaleUtils(@NonNull Context context) {
         DEFAULT_LANGUAGE_KEY = String.format("%s_%s", context.getPackageName(), TAG);
         this.prefs = PreferenceManager.getDefaultSharedPreferences(context);
         this.DEFAULT_LANGUAGE = DEFAULT_LANGUAGE_EN;
     }
 
-    LocaleUtils(@NonNull Context context, String firstLauncher) {
+    private LocaleUtils(@NonNull Context context, String firstLauncher) {
         this(context);
         this.DEFAULT_LANGUAGE = firstLauncher;
     }

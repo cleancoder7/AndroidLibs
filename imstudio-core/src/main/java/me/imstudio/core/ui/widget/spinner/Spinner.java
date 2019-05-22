@@ -29,7 +29,7 @@ import java.util.List;
 import me.imstudio.core.R;
 import me.imstudio.core.utils.CompressUtils;
 import me.imstudio.core.utils.FileUtils;
-import me.imstudio.core.utils.Utils;
+import me.imstudio.core.utils.ThemeUtils;
 
 public class Spinner extends android.support.v7.widget.AppCompatTextView {
     private OnNothingSelectedListener onNothingSelectedListener;
@@ -91,7 +91,7 @@ public class Spinner extends android.support.v7.widget.AppCompatTextView {
         if (attrs == null)
             return;
         TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.Spinner);
-        boolean rtl = Utils.isRtl(context);
+        boolean rtl = ThemeUtils.isRtl(context);
         try {
             installFonts(context, attrs);
             arrowColor = ta.getColor(R.styleable.Spinner_ims_arrowTint, Color.WHITE);
@@ -102,7 +102,7 @@ public class Spinner extends android.support.v7.widget.AppCompatTextView {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
                 arrowDrawable = ta.getDrawable(R.styleable.Spinner_ims_arrowDrawable);
             else
-                arrowDrawable = Utils.getDrawable(context,
+                arrowDrawable = ThemeUtils.getDrawable(context,
                         ta.getResourceId(R.styleable.Spinner_ims_arrowDrawable, R.drawable.ms_arrow_default));
         } finally {
             ta.recycle();
@@ -121,7 +121,7 @@ public class Spinner extends android.support.v7.widget.AppCompatTextView {
             setTextDirection(View.TEXT_DIRECTION_RTL);
         }
         if (!hideArrow) {
-            arrowDrawable = Utils.getDrawable(context, R.drawable.ms_arrow_default).mutate();
+            arrowDrawable = ThemeUtils.getDrawable(context, R.drawable.ms_arrow_default).mutate();
             arrowDrawable.setColorFilter(arrowColor, PorterDuff.Mode.SRC_IN);
             if (rtl)
                 setCompoundDrawablesWithIntrinsicBounds(arrowDrawable, null, null, null);
@@ -153,9 +153,9 @@ public class Spinner extends android.support.v7.widget.AppCompatTextView {
         popupWindow.setFocusable(true);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             popupWindow.setElevation(16);
-            popupWindow.setBackgroundDrawable(Utils.getDrawable(context, R.drawable.ms_drawable_default));
+            popupWindow.setBackgroundDrawable(ThemeUtils.getDrawable(context, R.drawable.ms_drawable_default));
         } else
-            popupWindow.setBackgroundDrawable(Utils.getDrawable(context, R.drawable.all_style_rect_white));
+            popupWindow.setBackgroundDrawable(ThemeUtils.getDrawable(context, R.drawable.all_style_rect_white));
         popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
             @Override
             public void onDismiss() {

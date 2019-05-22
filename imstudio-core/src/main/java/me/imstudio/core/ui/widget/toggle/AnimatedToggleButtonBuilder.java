@@ -2,7 +2,7 @@ package me.imstudio.core.ui.widget.toggle;
 
 import android.content.Context;
 
-import me.imstudio.core.utils.Utils;
+import me.imstudio.core.utils.ThemeUtils;
 
 public class AnimatedToggleButtonBuilder {
 
@@ -40,7 +40,7 @@ public class AnimatedToggleButtonBuilder {
     }
 
     public AnimatedToggleButtonBuilder setImageSizeDp(int dp) {
-        sparkButton.imageSize = Utils.dp2Px(context, dp);
+        sparkButton.imageSize = ThemeUtils.dp2Px(dp);
         return this;
     }
 

@@ -5,10 +5,11 @@ import android.content.Context;
 import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
+import android.view.View;
 
-import com.di4l.vchatutils.R;
+import me.imstudio.core.R;
 
-public final class ActionEditText extends android.support.v7.widget.AppCompatEditText {
+public final class ActionEditText extends EditText {
 
     private OnActionPerformClicked onActionPerformClicked;
 
@@ -29,39 +30,42 @@ public final class ActionEditText extends android.support.v7.widget.AppCompatEdi
 
     @SuppressLint("ClickableViewAccessibility")
     private void init(Context context) {
-        setOnTouchListener((v, event) -> {
-            try {
-                final int DRAWABLE_LEFT = 0;
-                final int DRAWABLE_TOP = 1;
-                final int DRAWABLE_RIGHT = 2;
-                final int DRAWABLE_BOTTOM = 3;
+        setOnTouchListener(new OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                try {
+                    final int DRAWABLE_LEFT = 0;
+                    final int DRAWABLE_TOP = 1;
+                    final int DRAWABLE_RIGHT = 2;
+                    final int DRAWABLE_BOTTOM = 3;
 
-                if (event.getAction() == MotionEvent.ACTION_UP) {
-                    Rect rect;
-                    boolean isClickedInDrawableZone = false;
-                    if (getResources().getBoolean(R.bool.is_right_to_left)) {
-                        if (getCompoundDrawables()[DRAWABLE_LEFT] != null) {
-                            rect = getCompoundDrawables()[DRAWABLE_LEFT].getBounds();
-                            isClickedInDrawableZone = event.getRawX() <= rect.width() * 2;
+                    if (event.getAction() == MotionEvent.ACTION_UP) {
+                        Rect rect;
+                        boolean isClickedInDrawableZone = false;
+                        if (getResources().getBoolean(R.bool.is_right_to_left)) {
+                            if (getCompoundDrawables()[DRAWABLE_LEFT] != null) {
+                                rect = getCompoundDrawables()[DRAWABLE_LEFT].getBounds();
+                                isClickedInDrawableZone = event.getRawX() <= rect.width() * 2;
+                            }
+                        } else {
+                            if (getCompoundDrawables()[DRAWABLE_RIGHT] != null) {
+                                rect = getCompoundDrawables()[DRAWABLE_RIGHT].getBounds();
+                                isClickedInDrawableZone = event.getRawX() >= (getRight() - rect.width());
+                            }
                         }
-                    } else {
-                        if (getCompoundDrawables()[DRAWABLE_RIGHT] != null) {
-                            rect = getCompoundDrawables()[DRAWABLE_RIGHT].getBounds();
-                            isClickedInDrawableZone = event.getRawX() >= (getRight() - rect.width());
+                        if (isClickedInDrawableZone) {
+                            if (onActionPerformClicked != null)
+                                onActionPerformClicked.onActionPerformClicked();
+                            else
+                                setText("");
+                            return true;
                         }
                     }
-                    if (isClickedInDrawableZone) {
-                        if (onActionPerformClicked != null)
-                            onActionPerformClicked.onActionPerformClicked();
-                        else
-                            setText("");
-                        return true;
-                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
-            } catch (Exception e) {
-                e.printStackTrace();
+                return false;
             }
-            return false;
         });
     }
 

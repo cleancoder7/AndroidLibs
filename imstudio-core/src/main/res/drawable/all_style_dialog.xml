@@ -6,11 +6,12 @@
     android:insetBottom="@dimen/margin">
 
     <shape android:shape="rectangle">
-        <corners android:radius="@dimen/margin" />
-        <corners android:bottomLeftRadius="@dimen/margin" />
-        <corners android:bottomRightRadius="@dimen/margin" />
-        <corners android:topLeftRadius="@dimen/margin" />
-        <corners android:topRightRadius="@dimen/margin" />
+        <corners
+            android:bottomLeftRadius="@dimen/margin"
+            android:bottomRightRadius="@dimen/margin"
+            android:radius="@dimen/margin"
+            android:topLeftRadius="@dimen/margin"
+            android:topRightRadius="@dimen/margin" />
         <solid android:color="@android:color/white" />
     </shape>
 </inset>

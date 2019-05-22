@@ -35,6 +35,7 @@
     <dimen name="margin_x9">64dp</dimen>
     <dimen name="margin_x10">72dp</dimen>
 
+    // Icon
     <dimen name="size_icon">8dp</dimen>
     <dimen name="size_icon_x2">16dp</dimen>
     <dimen name="size_icon_x3">24dp</dimen>
@@ -44,5 +45,13 @@
     <dimen name="size_icon_x7">56dp</dimen>
     <dimen name="size_icon_x8">64dp</dimen>
     <dimen name="size_icon_x9">72dp</dimen>
+
+    // Separate
+    <dimen name="separate_margin_top">@dimen/margin_small</dimen>
+    <dimen name="separate_margin_left">0dp</dimen>
+    <dimen name="separate_margin_right">0dp</dimen>
+    <dimen name="separate_margin_bottom">@dimen/margin_small</dimen>
+    <dimen name="separate_alpha" format="float">0.4</dimen>
+    <dimen name="separate_height">@dimen/margin_unit</dimen>
 
 </resources>

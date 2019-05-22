@@ -1,12 +1,12 @@
 package me.imstudio.core.ui.activity;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 
-public abstract class IMSActivity extends AppCompatActivity implements ActivityInterface {
+import me.imstudio.core.ui.LayoutResId;
+import me.imstudio.core.utils.KeyboardUtils;
+
+public abstract class IMSActivity extends AppCompatActivity {
 
     private String TAG = IMSActivity.class.getSimpleName();
     protected static final String KEY_CLASS = "KEY_CLASS";
@@ -25,10 +25,13 @@ public abstract class IMSActivity extends AppCompatActivity implements ActivityI
     protected void onCreate(Bundle savedInstanceState) {
         TAG = this.getClass().getSimpleName();
         super.onCreate(savedInstanceState);
-        setContentView(getLayout());
-        onSyncViews(savedInstanceState);
-        onSyncEvents();
-        onSyncData();
+        int layoutResId = getLayout();
+        if (layoutResId != LayoutResId.LAYOUT_NOT_DEFINED) {
+            setContentView(getLayout());
+            onSyncViews(savedInstanceState);
+            onSyncEvents();
+            onSyncData();
+        }
     }
 
     @Override
@@ -37,20 +40,24 @@ public abstract class IMSActivity extends AppCompatActivity implements ActivityI
         hideKeyboardIfNeed();
     }
 
-    protected void setWaitingTime(int maxWaitingTime) {
-        this.MAX_WAITING_TIME = maxWaitingTime;
+    protected void hideKeyboardIfNeed() {
+        KeyboardUtils.hideKeyboardIfNeed(this);
     }
 
-    protected void hideKeyboardIfNeed() {
-        try {
-            InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-            View v = getCurrentFocus();
-            if (v == null || inputMethodManager == null)
-                return;
-            inputMethodManager.hideSoftInputFromWindow(v.getWindowToken(), 0);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    protected int getLayout() {
+        if (getClass().getAnnotation(LayoutResId.class) != null)
+            return getClass().getAnnotation(LayoutResId.class).layout();
+        return LayoutResId.LAYOUT_NOT_DEFINED;
+    }
+
+    protected abstract void onSyncViews(Bundle savedInstanceState);
+
+    protected abstract void onSyncEvents();
+
+    protected abstract void onSyncData();
+
+    protected void setWaitingTime(int maxWaitingTime) {
+        this.MAX_WAITING_TIME = maxWaitingTime;
     }
 
     public String getTAG() {

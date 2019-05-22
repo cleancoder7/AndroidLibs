@@ -13,7 +13,7 @@ import me.imstudio.core.ui.pager.listener.RecyclerItemClickListener;
 /*
     RecyclerViewUtils: Helper class to build up with recycler view faster
 */
-public final class RecyclerViewUtils {
+public class RecyclerViewUtils {
 
     private static final String TAG = RecyclerViewUtils.class.getSimpleName();
 

@@ -1,6 +1,6 @@
 package me.imstudio.core.utils;
 
-public final class StringUtils {
+public class StringUtils {
 
     private StringUtils() {
     }

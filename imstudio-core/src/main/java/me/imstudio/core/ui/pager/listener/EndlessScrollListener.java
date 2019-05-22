@@ -89,7 +89,7 @@ public abstract class EndlessScrollListener extends RecyclerView.OnScrollListene
                 this.loading = true;
             }
         }
-        // If it’s still loading, we check to see if the dataset count has
+        // If it’s still loading, we check to see if the data count has
         // changed, if so we conclude it has finished loading and update the current page
         // number and total item count.
         if (loading && (totalItemCount > previousTotalItemCount)) {

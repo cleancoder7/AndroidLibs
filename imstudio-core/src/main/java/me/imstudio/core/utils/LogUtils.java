@@ -4,7 +4,10 @@ import android.util.Log;
 
 import java.util.Calendar;
 
-public final class LogUtils {
+public class LogUtils {
+
+    private LogUtils() {
+    }
 
     public static String TAG = LogUtils.class.getSimpleName();
 

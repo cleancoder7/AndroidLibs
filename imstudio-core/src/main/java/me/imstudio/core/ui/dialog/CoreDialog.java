@@ -8,7 +8,7 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import me.imstudio.core.R;
-import me.imstudio.core.utils.DimensionUtils;
+import me.imstudio.core.utils.ThemeUtils;
 
 public abstract class CoreDialog extends Dialog {
 
@@ -45,7 +45,7 @@ public abstract class CoreDialog extends Dialog {
     }
 
     protected int getWidth() {
-        return DimensionUtils.getScreenWidth(mOwnerActivity) * 8 / 10;
+        return ThemeUtils.getScreenWidth(mOwnerActivity) * 8 / 10;
     }
 
     protected int getHeight() {

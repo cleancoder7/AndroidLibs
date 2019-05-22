@@ -18,7 +18,7 @@ import android.view.animation.LinearInterpolator;
 import android.widget.Checkable;
 
 import me.imstudio.core.R;
-import me.imstudio.core.utils.Utils;
+import me.imstudio.core.utils.ThemeUtils;
 
 public class CheckBox extends View implements Checkable {
 
@@ -92,7 +92,7 @@ public class CheckBox extends View implements Checkable {
         mFloorColor = ta.getColor(R.styleable.CheckBox_ims_colorUncheckedStroke, COLOR_FLOOR_UNCHECKED);
         mCheckedColor = ta.getColor(R.styleable.CheckBox_ims_colorChecked, COLOR_CHECKED);
         mUnCheckedColor = ta.getColor(R.styleable.CheckBox_ims_colorUnchecked, COLOR_UNCHECKED);
-        mStrokeWidth = ta.getDimensionPixelSize(R.styleable.CheckBox_ims_strokeWidth, Utils.dp2Px(getContext(), 0));
+        mStrokeWidth = ta.getDimensionPixelSize(R.styleable.CheckBox_ims_strokeWidth, ThemeUtils.dp2Px( 0));
         ta.recycle();
 
         mFloorUnCheckedColor = mFloorColor;
@@ -205,7 +205,7 @@ public class CheckBox extends View implements Checkable {
     }
 
     private int measureSize(int measureSpec) {
-        int defSize = Utils.dp2Px(getContext(), DEF_DRAW_SIZE);
+        int defSize = ThemeUtils.dp2Px(DEF_DRAW_SIZE);
         int specSize = MeasureSpec.getSize(measureSpec);
         int specMode = MeasureSpec.getMode(measureSpec);
 

@@ -21,7 +21,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import me.imstudio.core.R;
-import me.imstudio.core.utils.Utils;
+import me.imstudio.core.utils.ThemeUtils;
 
 public class AnimatedToggleButton extends FrameLayout implements View.OnClickListener {
 
@@ -279,7 +279,7 @@ public class AnimatedToggleButton extends FrameLayout implements View.OnClickLis
 
     private void getStuffFromXML(AttributeSet attr) {
         TypedArray a = getContext().obtainStyledAttributes(attr, R.styleable.AnimatedToggleButton);
-        imageSize = a.getDimensionPixelOffset(R.styleable.AnimatedToggleButton_ims_iconSize, Utils.dp2Px(getContext(), 50));
+        imageSize = a.getDimensionPixelOffset(R.styleable.AnimatedToggleButton_ims_iconSize, ThemeUtils.dp2Px(50));
         imageResourceIdActive = a.getResourceId(R.styleable.AnimatedToggleButton_ims_imageOn, INVALID_RESOURCE_ID);
         imageResourceIdInactive = a.getResourceId(R.styleable.AnimatedToggleButton_ims_imageOff, INVALID_RESOURCE_ID);
         primaryColor = ContextCompat.getColor(getContext(), a.getResourceId(R.styleable.AnimatedToggleButton_ims_primaryColor, R.color.ims_primary_color));
