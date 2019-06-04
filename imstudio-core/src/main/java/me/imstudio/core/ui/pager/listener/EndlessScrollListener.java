@@ -21,11 +21,16 @@ public abstract class EndlessScrollListener extends RecyclerView.OnScrollListene
     private int startingPageIndex = 0;
 
     // Max Item Can Be Load
-    private int maxItemCanBeLoad = 100;
+    private int maxItemCanBeLoad;
 
     private RecyclerView.LayoutManager mLayoutManager;
 
+    public EndlessScrollListener() {
+        this.maxItemCanBeLoad = Integer.MAX_VALUE;
+    }
+
     public EndlessScrollListener(LinearLayoutManager layoutManager) {
+        this();
         this.mLayoutManager = layoutManager;
     }
 
@@ -34,20 +39,20 @@ public abstract class EndlessScrollListener extends RecyclerView.OnScrollListene
         this.maxItemCanBeLoad = maxItemCanBeLoad;
     }
 
-    public EndlessScrollListener(LinearLayoutManager layoutManager,
-                                 int maxItemCanBeLoad,
-                                 int visibleThreshold) {
+    public EndlessScrollListener(LinearLayoutManager layoutManager, int maxItemCanBeLoad, int visibleThreshold) {
         this(layoutManager);
         this.visibleThreshold = visibleThreshold;
         this.maxItemCanBeLoad = maxItemCanBeLoad;
     }
 
     public EndlessScrollListener(GridLayoutManager layoutManager) {
+        this();
         this.mLayoutManager = layoutManager;
         visibleThreshold = visibleThreshold * layoutManager.getSpanCount();
     }
 
     public EndlessScrollListener(StaggeredGridLayoutManager layoutManager) {
+        this();
         this.mLayoutManager = layoutManager;
         visibleThreshold = visibleThreshold * layoutManager.getSpanCount();
     }
@@ -103,7 +108,7 @@ public abstract class EndlessScrollListener extends RecyclerView.OnScrollListene
         if (!loading && (lastVisibleItemPosition + visibleThreshold) > totalItemCount) {
             currentPage++;
             if (currentPage * totalItemCount <= maxItemCanBeLoad) {
-                onLoadMore(currentPage, totalItemCount > 10 ? 10 : totalItemCount);
+                onLoadMore(currentPage, totalItemCount);
                 loading = true;
             }
         }

@@ -54,4 +54,6 @@
     <dimen name="separate_alpha" format="float">0.4</dimen>
     <dimen name="separate_height">@dimen/margin_unit</dimen>
 
+    // Load more
+    <dimen name="load_more_margin">@dimen/margin</dimen>
 </resources>

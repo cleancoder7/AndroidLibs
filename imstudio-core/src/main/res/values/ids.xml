@@ -10,6 +10,7 @@
     <item name="view_stub" type="id" />
     <item name="button_ok" type="id" />
     <item name="text_view" type="id" />
+    <item name="load_more" type="id" />
     <item name="edit_text" type="id" />
     <item name="text_title" type="id" />
     <item name="image_view" type="id" />

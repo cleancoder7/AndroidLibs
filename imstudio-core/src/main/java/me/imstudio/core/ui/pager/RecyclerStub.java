@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
+import android.view.View;
 import android.view.ViewStub;
 import android.widget.FrameLayout;
 
@@ -12,6 +13,7 @@ import me.imstudio.core.R;
 
 public class RecyclerStub extends FrameLayout {
 
+    private View loadMore;
     private ViewStub viewStub;
     private RecyclerView recyclerView;
 
@@ -33,11 +35,22 @@ public class RecyclerStub extends FrameLayout {
     private void init(Context context) {
         inflate(context, R.layout.view_recycler_stub, this);
         recyclerView = findViewById(R.id.recycler_view);
+        loadMore = findViewById(R.id.load_more);
         viewStub = findViewById(R.id.view_stub);
     }
 
     public RecyclerView getRecyclerView() {
         return recyclerView;
+    }
+
+    public void showLoadMore() {
+        if (loadMore != null)
+            loadMore.setVisibility(VISIBLE);
+    }
+
+    public void hideLoadMore() {
+        if (loadMore != null)
+            loadMore.setVisibility(GONE);
     }
 
     public void updateVisibility() {

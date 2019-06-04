@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<me.imstudio.core.ui.widget.ProgressBar xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@id/load_more"
+    android:layout_width="@dimen/size_icon_x2"
+    android:layout_height="@dimen/size_icon_x2"
+    android:layout_gravity="center"
+    android:layout_margin="@dimen/load_more_margin"
+    android:indeterminate="true"
+    android:visibility="gone"
+    app:ims_progressTint="@color/ims_color_load_more"
+    tools:visibility="visible" />

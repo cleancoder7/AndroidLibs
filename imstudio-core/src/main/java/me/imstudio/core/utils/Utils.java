@@ -38,9 +38,9 @@ public class Utils {
         return true;
     }
 
-    public static final class MapBuilder<K, V> {
+    public static final class MapBuilder{
 
-        private final HashMap<K, V> map;
+        private final HashMap<String, String> map;
         private static MapBuilder instance;
 
         private MapBuilder() {
@@ -54,19 +54,19 @@ public class Utils {
             return instance;
         }
 
-        public MapBuilder<K, V> put(K key, V value) {
+        public MapBuilder put(String key, String value) {
             if (value != null)
                 map.put(key, value);
             return this;
         }
 
-        public MapBuilder<K, V> putAll(Map<K, V> data) {
+        public MapBuilder putAll(Map<String, String> data) {
             if (data != null && data.size() > 0)
                 map.putAll(data);
             return this;
         }
 
-        public HashMap<K, V> build() {
+        public HashMap<String, String> build() {
             return map;
         }
 

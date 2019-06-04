@@ -282,8 +282,8 @@ public class AnimatedToggleButton extends FrameLayout implements View.OnClickLis
         imageSize = a.getDimensionPixelOffset(R.styleable.AnimatedToggleButton_ims_iconSize, ThemeUtils.dp2Px(50));
         imageResourceIdActive = a.getResourceId(R.styleable.AnimatedToggleButton_ims_imageOn, INVALID_RESOURCE_ID);
         imageResourceIdInactive = a.getResourceId(R.styleable.AnimatedToggleButton_ims_imageOff, INVALID_RESOURCE_ID);
-        primaryColor = ContextCompat.getColor(getContext(), a.getResourceId(R.styleable.AnimatedToggleButton_ims_primaryColor, R.color.ims_primary_color));
-        secondaryColor = ContextCompat.getColor(getContext(), a.getResourceId(R.styleable.AnimatedToggleButton_ims_secondaryColor, R.color.ims_secondary_color));
+        primaryColor = ContextCompat.getColor(getContext(), a.getResourceId(R.styleable.AnimatedToggleButton_ims_primaryColor, R.color.ims_color_primary));
+        secondaryColor = ContextCompat.getColor(getContext(), a.getResourceId(R.styleable.AnimatedToggleButton_ims_secondaryColor, R.color.ims_color_secondary));
         activeImageTint = ContextCompat.getColor(getContext(), a.getResourceId(R.styleable.AnimatedToggleButton_ims_imageTintOn, R.color.ims_image_tint));
         inActiveImageTint = ContextCompat.getColor(getContext(), a.getResourceId(R.styleable.AnimatedToggleButton_ims_imageTintOff, R.color.ims_image_tint));
         pressOnTouch = a.getBoolean(R.styleable.AnimatedToggleButton_ims_pressOnTouch, true);

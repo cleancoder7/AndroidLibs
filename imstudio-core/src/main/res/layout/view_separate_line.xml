@@ -10,6 +10,6 @@
         android:layout_marginRight="@dimen/separate_margin_right"
         android:layout_marginBottom="@dimen/separate_margin_bottom"
         android:alpha="@dimen/separate_alpha"
-        android:background="@color/ims_separate_color" />
+        android:background="@color/ims_color_separate" />
 
 </merge>
