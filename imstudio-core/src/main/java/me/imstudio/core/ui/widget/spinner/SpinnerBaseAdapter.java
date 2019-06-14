@@ -66,6 +66,8 @@ public abstract class SpinnerBaseAdapter<T> extends BaseAdapter {
     @Override
     public abstract int getCount();
 
+    public abstract void clearAll();
+
     public abstract T get(int position);
 
     public SpinnerBaseAdapter<T> setTextColor(int textColor) {

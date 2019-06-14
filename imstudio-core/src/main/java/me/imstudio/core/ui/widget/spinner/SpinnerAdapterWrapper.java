@@ -18,6 +18,11 @@ public final class SpinnerAdapterWrapper extends SpinnerBaseAdapter {
     }
 
     @Override
+    public void clearAll() {
+
+    }
+
+    @Override
     public Object getItem(int position) {
         if (position >= getSelectedIndex()) {
             return listAdapter.getItem(position + 1);

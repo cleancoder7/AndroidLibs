@@ -24,6 +24,12 @@ public class SpinnerAdapter<T> extends SpinnerBaseAdapter {
     }
 
     @Override
+    public void clearAll() {
+        if (items != null)
+            items.clear();
+    }
+
+    @Override
     public T getItem(int position) {
         try {
             return (position >= getSelectedIndex()) ? items.get(position + 1) : items.get(position);

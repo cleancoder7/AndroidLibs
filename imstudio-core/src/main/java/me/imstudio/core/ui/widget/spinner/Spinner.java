@@ -41,6 +41,8 @@ public class Spinner extends android.support.v7.widget.AppCompatTextView {
     private int selectedIndex;
     private Drawable arrowDrawable;
     private int arrowColor, numberOfItems, textColor = -1;
+    private View anchorView;
+    private int anchorGravity;
 
     public Spinner(Context context) {
         super(context);
@@ -88,8 +90,13 @@ public class Spinner extends android.support.v7.widget.AppCompatTextView {
     }
 
     private void init(Context context, AttributeSet attrs) {
+
+        setAnchorView(this);
+        setAnchorGravity(Gravity.TOP | Gravity.START);
+
         if (attrs == null)
             return;
+
         TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.Spinner);
         boolean rtl = ThemeUtils.isRtl(context);
         try {
@@ -323,23 +330,30 @@ public class Spinner extends android.support.v7.widget.AppCompatTextView {
         return listView.getSelectedItemPosition();
     }
 
+    public void setAnchorView(View view) {
+        this.anchorView = view;
+    }
+
+    public void setAnchorGravity(int anchorGravity) {
+        this.anchorGravity = anchorGravity;
+    }
+
     /**
      * Show the dropdown menu
      */
     private void expand() {
-        if (!hideArrow) {
+        if (!hideArrow)
             animateArrow(true);
-        }
         nothingSelected = true;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             popupWindow.setOverlapAnchor(false);
-            popupWindow.showAsDropDown(this);
+            popupWindow.showAsDropDown(anchorView);
         } else {
             int[] location = new int[2];
             getLocationOnScreen(location);
             int x = location[0];
             int y = getHeight() + location[1];
-            popupWindow.showAtLocation(this, Gravity.TOP | Gravity.START, x, y);
+            popupWindow.showAtLocation(anchorView, anchorGravity, x, y);
         }
     }
 
@@ -350,6 +364,11 @@ public class Spinner extends android.support.v7.widget.AppCompatTextView {
         if (!hideArrow)
             animateArrow(false);
         popupWindow.dismiss();
+    }
+
+    public void clearAll() {
+        if (adapter != null)
+            adapter.clearAll();
     }
 
     /**

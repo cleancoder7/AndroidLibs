@@ -18,7 +18,7 @@
         android:paddingRight="@dimen/margin_medium"
         android:paddingBottom="@dimen/margin"
         android:textAlignment="viewStart"
-        android:textColor="@color/colorTextColorPrimary"
+        android:textColor="@color/textColorPrimary"
         android:textSize="@dimen/size_text_extra_medium"
         android:textStyle="bold" />
 
@@ -34,7 +34,7 @@
         android:paddingRight="@dimen/margin_medium"
         android:paddingBottom="@dimen/margin_medium"
         android:textAlignment="viewStart"
-        android:textColor="@color/colorTextColorPrimary"
+        android:textColor="@color/textColorPrimary"
         android:textSize="@dimen/size_text_extra_medium" />
 
     <include layout="@layout/view_dialog_bottom_action" />

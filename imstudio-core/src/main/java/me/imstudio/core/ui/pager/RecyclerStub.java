@@ -53,7 +53,7 @@ public class RecyclerStub extends FrameLayout {
             loadMore.setVisibility(GONE);
     }
 
-    public void updateVisibility() {
+    public void notifyDataSetChanged() {
         if (recyclerView.getAdapter() != null) {
             viewStub.setVisibility(recyclerView.getAdapter().getItemCount() > 0 ? GONE : VISIBLE);
             recyclerView.setVisibility(recyclerView.getAdapter().getItemCount() > 0 ? VISIBLE : GONE);
